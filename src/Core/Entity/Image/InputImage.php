@@ -71,6 +71,40 @@ class InputImage
     }
 
     /**
+     * Properly encode URL
+     *
+     * @param string $url
+     * @return string
+     */
+    private function _encodeUrl($url)
+    {
+        // URL scheme was not always set as the input scheme
+        if (preg_match("!https?:/[a-zA-Z]!", $url)) {
+            $url = preg_replace("!http(s?):/!", 'http$1://', $url);
+        }
+        $parsedUrl = parse_url($url);
+
+        if (empty($parsedUrl['scheme']) || empty($parsedUrl['host'])) {
+            return $url; // invalid URL
+        }
+
+        $user = isset($parsedUrl['user']) ? rawurlencode($parsedUrl['user']) : '';
+        $pass = isset($parsedUrl['pass']) ? ':' . rawurlencode($parsedUrl['pass'])  : '';
+        $auth = $user || $pass ? "$user$pass@" : '';
+
+        $host = $parsedUrl['host'];
+        $port = isset($parsedUrl['port']) ? ':' . $parsedUrl['port'] : '';
+
+        $path = isset($parsedUrl['path']) ? implode('/', array_map('rawurlencode', explode('/', $parsedUrl['path']))) : '';
+        $query = isset($parsedUrl['query']) ? '?' . $parsedUrl['query'] : '';
+        $fragment = isset($parsedUrl['fragment']) ? '#' . $parsedUrl['fragment'] : '';
+
+        $encodedUrl = $parsedUrl['scheme'] . '://' . $auth . $host . $port . $path . $query . $fragment;
+
+        return $encodedUrl;
+    }
+
+    /**
      * Save given image to temporary file and return the path
      *
      * @throws \Exception
@@ -109,6 +143,8 @@ class InputImage
                 ],
         ];
         $context = stream_context_create($opts);
+
+        $this->sourceImageUrl = $this->_encodeUrl($this->sourceImageUrl);
 
         if (!$stream = @fopen($this->sourceImageUrl, 'r', false, $context)) {
             throw  new ReadFileException(
