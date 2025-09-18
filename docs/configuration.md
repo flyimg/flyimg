@@ -106,3 +106,50 @@ _Defaults to:_ `local`
 
 More info at [Storage Options](storage-options.md).
 
+
+### aws_s3
+
+When using S3 sources (e.g., `s3://bucket/key`), configure the S3 parameters in `config/parameters.yml` under `aws_s3`:
+
+```yml
+aws_s3:
+  access_id: "..."
+  secret_key: "..."
+  region: "eu-central-1"
+  bucket_name: "my-bucket"
+  # path_prefix: ''
+  # visibility: 'PRIVATE'   # PUBLIC or PRIVATE
+  # endpoint: 'https://%s.s3.%s.amazonaws.com/'
+  # bucket_endpoint: false
+  # use_path_style_endpoint: false
+```
+
+- `endpoint` can target third-party S3-compatible services. It should accept `%s` placeholders for bucket and region.
+- For private objects, you may need to forward request headers (e.g., `Authorization`).
+
+### forward_request_headers
+
+List of request headers that Flyimg will forward when fetching the source image. Useful when the upstream requires authentication.
+
+```yml
+forward_request_headers:
+  - Authorization
+```
+
+### header_extra_options
+
+Additional HTTP headers sent when fetching source images (useful for custom User-Agent, etc.).
+
+```yml
+header_extra_options:
+  - 'User-Agent: Mozilla/5.0 (... your UA ... )'
+```
+
+### POST upload endpoint
+
+Flyimg supports uploading images via POST to avoid long URLs:
+
+- Endpoint: `POST /upload/{image_options}`
+- Bodies: raw binary (`application/octet-stream` or `image/*`) or JSON `{"base64":"..."}` / `{"dataUri":"data:..."}`
+
+See examples in [URL Options](url-options.md#alternative-sources-and-post-uploads).

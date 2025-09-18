@@ -9,6 +9,12 @@ upload:
                imageSrc: ''}
    requirements:
       imageSrc: .*
+   methods: [GET]
+
+upload_post:
+   path: /upload/{options}
+   defaults: {_controller: 'Core\Controller\DefaultController::uploadStreamAction'}
+   methods: [POST]
 
 path:
    path: /path/{options}/{imageSrc}
@@ -16,3 +22,4 @@ path:
                imageSrc: ''}
    requirements:
       imageSrc: .*
+   methods: [GET]

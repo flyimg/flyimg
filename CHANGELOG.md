@@ -1,5 +1,17 @@
 # Flyimg Changelog
 
+# [1.8.0](https://github.com/flyimg/flyimg/compare/1.7.11...1.8.0) (2025-09-18)
+
+
+### Bug Fixes
+
+* correct PHPDoc formatting ([e271b70](https://github.com/flyimg/flyimg/commit/e271b70b42ab77e471c663dac366218fe62f5a17))
+
+
+### Features
+
+* add support for POST uploads and S3 sources ([e27d180](https://github.com/flyimg/flyimg/commit/e27d18084ed4a6c035e7c212d8523a3d938f7788))
+
 ## [1.7.11](https://github.com/flyimg/flyimg/compare/1.7.10...1.7.11) (2025-09-14)
 
 

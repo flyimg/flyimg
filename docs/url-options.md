@@ -34,6 +34,45 @@ It's the first operation the server does, it will try to get an image from the U
 
 ---
 
+## Alternative sources and POST uploads
+
+In addition to fetching images from an HTTP/HTTPS URL, Flyimg supports:
+
+- S3 references: `s3://<bucket>/<key>`
+- Direct POST uploads with the request body
+
+### POST uploads (recommended for large inputs)
+
+- Endpoint: `POST /upload/{image_options}`
+- Supported bodies:
+  - `application/octet-stream` or any `image/*`: raw binary body
+  - `application/json`: `{ "base64": "<BASE64>" }` or `{ "dataUri": "data:<mime>;base64,<data>" }`
+
+Examples:
+
+```bash
+curl -X POST -H "Content-Type: application/octet-stream" \
+  --data-binary @tests/testImages/square.png \
+  http://localhost:8080/upload/w_300,o_jpg -o out.jpg
+```
+
+```bash
+B64=$(base64 -i tests/testImages/square.jpg)
+curl -X POST -H "Content-Type: application/json" \
+  -d "{\"base64\":\"$B64\"}" \
+  http://localhost:8080/upload/w_300,o_png -o out.png
+```
+
+### S3 sources
+
+Fetch from S3 using a simple URI:
+
+```
+/upload/w_300/s3://my-bucket/path/to/image.png
+```
+
+Configuration for S3 endpoint/region is *required*, see configuration docs below.
+
 ## image_options
 
 Here you set all the transformations and output settings you want to apply to the image you are fetching.

@@ -4,24 +4,28 @@ namespace Tests\Core\Controller;
 
 use Core\Exception\ExecFailedException;
 use Core\Exception\InvalidArgumentException;
+use Core\Exception\AppException;
 use Core\Exception\ReadFileException;
 use Silex\WebTestCase;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Tests\Core\BaseTest;
 
+/**
+ * Class DefaultControllerTest
+ *
+ * @category Tests
+ * @package  Flyimg\\Tests
+ * @author   Flyimg Team <dev@flyimg.io>
+ * @license  MIT License <https://opensource.org/licenses/MIT>
+ * @link     https://github.com/flyimg/flyimg
+ */
 class DefaultControllerTest extends BaseTest
 {
-    /**
-     *
-     */
     protected function tearDown(): void
     {
         unset($this->app);
     }
 
-    /**
-     *
-     */
     public function testIndexAction()
     {
         $client = static::createClient();
@@ -29,9 +33,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertTrue($client->getResponse()->isOk());
     }
 
-    /**
-     *
-     */
     public function testIndexActionWithDemoDisabled()
     {
         $this->app['params']->addParameter('demo_page_enabled', false);
@@ -41,9 +42,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertEmpty($client->getResponse()->getContent());
     }
 
-    /**
-     *
-     */
     public function testUploadAction()
     {
         $client = static::createClient();
@@ -52,9 +50,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     * @return void
-     */
     public function testUploadActionWebp()
     {
         $client = static::createClient();
@@ -63,9 +58,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     * @return void
-     */
     public function testUploadActionAvif()
     {
         $client = static::createClient();
@@ -74,9 +66,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testUploadActionGif()
     {
         $client = static::createClient();
@@ -85,9 +74,60 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
+    /** Ensure POST /upload with octet-stream body works. */
+    public function testUploadPostOctetStream()
+    {
+        $client = static::createClient();
+        $binary = file_get_contents(BaseTest::PNG_TEST_IMAGE);
+        $client->request(
+            'POST',
+            '/upload/w_50,o_jpg',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/octet-stream'],
+            $binary
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure POST /upload with JSON {base64} works. */
+    public function testUploadPostJsonBase64()
+    {
+        $client = static::createClient();
+        $binary = file_get_contents(BaseTest::JPG_TEST_IMAGE);
+        $payload = json_encode(['base64' => base64_encode($binary)]);
+        $client->request(
+            'POST',
+            '/upload/w_60,o_png',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            $payload
+        );
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure GET /upload with data URI works. */
+    public function testUploadGetDataUri()
+    {
+        $client = static::createClient();
+        $binary = file_get_contents(BaseTest::PNG_TEST_IMAGE);
+        $dataUri = 'data:image/png;base64,' . base64_encode($binary);
+        $client->request('GET', '/upload/w_40,o_jpg/' . $dataUri);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertFalse($client->getResponse()->isEmpty());
+    }
+
+    /** Ensure s3:// without configuration throws AppException. */
+    public function testUploadS3WithoutConfig()
+    {
+        $this->expectException(AppException::class);
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_20/' . 's3://nonexistent-bucket/path/to/image.png');
+    }
+
     public function testUploadActionWithFaceDetection()
     {
         $client = static::createClient();
@@ -96,9 +136,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testUploadActionForbidden()
     {
         $this->expectException(ReadFileException::class);
@@ -106,9 +143,6 @@ class DefaultControllerTest extends BaseTest
         $client->request('GET', '/upload/w_200,h_200,c_1/Rovinj-Croatia-nonExist.jpg');
     }
 
-    /**
-     *
-     */
     public function testUploadActionInvalidExtension()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -116,9 +150,6 @@ class DefaultControllerTest extends BaseTest
         $client->request('GET', '/upload/w_200,h_200,c_1,o_xxx/' . BaseTest::JPG_TEST_IMAGE);
     }
 
-    /**
-     *
-     */
     public function testPathAction()
     {
         $client = static::createClient();
@@ -127,9 +158,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testPathActionForbidden()
     {
         $this->expectException(ReadFileException::class);
@@ -137,9 +165,6 @@ class DefaultControllerTest extends BaseTest
         $client->request('GET', '/path/w_200,h_200,c_1/Rovinj-Croatia-nonExist.jpg');
     }
 
-    /**
-     *
-     */
     public function testUploadPdfNoPageSpecified()
     {
         $client = static::createClient();
@@ -148,9 +173,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testUploadPdfPage2()
     {
         $client = static::createClient();
@@ -159,9 +181,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testUploadPdfWithDensity()
     {
         $client = static::createClient();
@@ -170,9 +189,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testUploadMovieNoTimeSpecified()
     {
         $client = static::createClient();
@@ -181,9 +197,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testUploadMovie5Seconds()
     {
         $client = static::createClient();
@@ -192,9 +205,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testUploadMovie10Seconds()
     {
         $client = static::createClient();
@@ -203,9 +213,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testUploadMovie10SecondsRefresh()
     {
         $client = static::createClient();
@@ -214,9 +221,6 @@ class DefaultControllerTest extends BaseTest
         $this->assertFalse($client->getResponse()->isEmpty());
     }
 
-    /**
-     *
-     */
     public function testUploadMovie20SecondsFails()
     {
         $this->expectException(ExecFailedException::class);
@@ -231,7 +235,7 @@ class DefaultControllerTest extends BaseTest
      */
     public function createApplication()
     {
-        $app = require __DIR__ . '/../../../app.php';
+        $app = include __DIR__ . '/../../../app.php';
         $app['debug'] = true;
         unset($app['exception_handler']);
 

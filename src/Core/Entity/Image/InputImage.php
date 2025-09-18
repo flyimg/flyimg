@@ -14,9 +14,15 @@ use Core\Processor\VideoProcessor;
 use Symfony\Component\HttpFoundation\Request;
 use Core\Exception\FileNotFoundException;
 
+/**
+ * Class InputImage
+ * @package Core\Entity
+ */
 class InputImage
 {
-    /** Content TYPE */
+    /**
+     * Content TYPE constants.
+     */
     public const WEBP_MIME_TYPE = 'image/webp';
     public const JPEG_MIME_TYPE = 'image/jpeg';
     public const PNG_MIME_TYPE = 'image/png';
@@ -24,29 +30,53 @@ class InputImage
     public const AVIF_MIME_TYPE = 'image/avif';
     public const PDF_MIME_TYPE = 'application/pdf';
 
-    /** @var OptionsBag */
+    /**
+     * Options selected for processing.
+     *
+     * @var OptionsBag
+     */
     protected $optionsBag;
 
-    /** @var string */
+    /**
+     * Original source image spec (URL, path, data URI, s3 URI).
+     *
+     * @var string
+     */
     protected $sourceImageUrl;
 
-    /** @var string */
+    /**
+     * Temporary local path to the downloaded source image.
+     *
+     * @var string
+     */
     protected $sourceImagePath;
 
-    /** @var string */
+    /**
+     * Detected MIME type of the source image.
+     *
+     * @var string
+     */
     protected $sourceImageMimeType;
 
-    /** @var ImageMetaInfo */
+    /**
+     * Parsed metadata for the source image.
+     *
+     * @var ImageMetaInfo
+     */
     protected $sourceImageInfo;
 
-    /**  @var string */
+    /**
+     * Source file MIME type (videos handled specially).
+     *
+     * @var string
+     */
     protected $sourceFileMimeType;
 
     /**
      * InputImage constructor.
      *
-     * @param OptionsBag $optionsBag
-     * @param string $sourceImageUrl
+     * @param OptionsBag $optionsBag     Options for processing.
+     * @param string     $sourceImageUrl Source image spec.
      *
      * @throws \Exception
      */
@@ -77,9 +107,10 @@ class InputImage
     }
 
     /**
-     * Properly encode URL
+     * Properly encode URL.
      *
-     * @param string $url
+     * @param string $url URL to encode.
+     *
      * @return string
      */
     private function encodeUrl($url)
@@ -108,16 +139,28 @@ class InputImage
         $query = isset($parsedUrl['query']) ? '?' . $parsedUrl['query'] : '';
         $fragment = isset($parsedUrl['fragment']) ? '#' . $parsedUrl['fragment'] : '';
 
-        return  $parsedUrl['scheme'] . '://' . $auth . $host . $port . $path . $query . $fragment;
+        $result = $parsedUrl['scheme'] . '://'
+            . $auth
+            . $host
+            . $port
+            . $path
+            . $query
+            . $fragment;
+
+        return $result;
     }
 
     /**
-     * Save given image to temporary file and return the path
+     * Save given image to temporary file and return the path.
+     *
+     * @return void
      *
      * @throws \Exception
      */
     protected function saveToTemporaryFile()
     {
+        // Support data URI (base64) and s3:// schemes in addition to http(s) and local files
+        $originalSource = $this->sourceImageUrl;
         $this->sourceImageUrl = $this->encodeUrl($this->sourceImageUrl);
 
         $headers = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
@@ -145,14 +188,118 @@ class InputImage
             return;
         }
 
+        // Handle data URI
+        if (stripos($originalSource, 'data:') === 0) {
+            $commaPos = strpos($originalSource, ',');
+            if ($commaPos === false) {
+                throw new InvalidArgumentException('Invalid data URI');
+            }
+            $meta = substr($originalSource, 0, $commaPos);
+            $dataPart = substr($originalSource, $commaPos + 1);
+            $isBase64 = stripos($meta, ';base64') !== false;
+            $binary = $isBase64 ? base64_decode($dataPart) : urldecode($dataPart);
+            if ($binary === false) {
+                throw new InvalidArgumentException('Invalid base64 data');
+            }
+            file_put_contents($this->sourceImagePath, $binary);
+            return;
+        }
+
+        // Handle s3://bucket/key
+        if (stripos($originalSource, 's3://') === 0) {
+            $withoutScheme = substr($originalSource, 5);
+            $firstSlash = strpos($withoutScheme, '/');
+            if ($firstSlash === false) {
+                throw new InvalidArgumentException('Invalid S3 URI, expected s3://bucket/key');
+            }
+            $bucket = substr($withoutScheme, 0, $firstSlash);
+            $key = substr($withoutScheme, $firstSlash + 1);
+
+            // Build HTTP URL using configured endpoint pattern if present
+            $params = $this->optionsBag->appParameters()->parameterByKey('aws_s3');
+            if (!is_array($params) || empty($params)) {
+                throw new AppException('S3 not configured');
+            }
+            $endpoint = (
+                isset($params['endpoint']) && !empty($params['endpoint'])
+            )
+                ? sprintf($params['endpoint'], $bucket, $params['region'])
+                : sprintf(
+                    'https://%s.s3.%s.amazonaws.com/',
+                    $bucket,
+                    $params['region']
+                );
+            $signedUrl = $endpoint . $key;
+
+            // Fetch via curl (public or signed by custom endpoint). If private, rely on Authorization forwarding.
+            $headers = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
+            if (is_string($headers)) {
+                $headers = [$headers];
+            }
+            $forwardRequestHeaders = (array)$this->optionsBag
+                ->appParameters()
+                ->parameterByKey('forward_request_headers', []);
+            if (!empty($forwardRequestHeaders)) {
+                $requestHeaders = Request::createFromGlobals()->headers;
+                foreach ($forwardRequestHeaders as $name) {
+                    if ($requestHeaders->has($name)) {
+                        $value = $requestHeaders->get($name);
+                        $headers[] = "$name: $value";
+                        if ('Authorization' === $name) {
+                            $this->sourceImagePath .= md5($value);
+                        }
+                    }
+                }
+            }
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $signedUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt(
+                $ch,
+                CURLOPT_TIMEOUT,
+                $this->optionsBag->appParameters()->parameterByKey('source_image_request_timeout')
+            );
+            $imageData = curl_exec($ch);
+            if (curl_errno($ch)) {
+                throw new ReadFileException('Curl error: ' . curl_error($ch));
+            }
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            if ($httpCode == 200 && $imageData !== false) {
+                file_put_contents($this->sourceImagePath, $imageData);
+                return;
+            }
+            switch ($httpCode) {
+                case 400:
+                    throw new InvalidArgumentException();
+                case 401:
+                    throw new UnauthorizedException();
+                case 403:
+                    throw new AccessDeniedException();
+                case 404:
+                    throw new FileNotFoundException();
+                case 503:
+                    throw new ServiceUnavailableException();
+                default:
+                    throw new AppException();
+            }
+        }
+
         if (filter_var($this->sourceImageUrl, FILTER_VALIDATE_URL)) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->sourceImageUrl);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);  // Allow redirects
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);  // Add custom headers
-            curl_setopt($ch, CURLOPT_TIMEOUT, $this->optionsBag->appParameters()
-            ->parameterByKey('source_image_request_timeout'));
+            curl_setopt(
+                $ch,
+                CURLOPT_TIMEOUT,
+                $this->optionsBag->appParameters()
+                     ->parameterByKey('source_image_request_timeout')
+            );
 
             $imageData = curl_exec($ch);
 
@@ -192,7 +339,9 @@ class InputImage
     }
 
     /**
-     * @param string $key
+     * Extract and remove an option from the options bag.
+     *
+     * @param string $key Option key to extract.
      *
      * @return string
      */
@@ -208,6 +357,8 @@ class InputImage
     }
 
     /**
+     * Get the options bag.
+     *
      * @return OptionsBag
      */
     public function optionsBag(): OptionsBag
@@ -216,6 +367,8 @@ class InputImage
     }
 
     /**
+     * Get original source image spec.
+     *
      * @return string
      */
     public function sourceImageUrl(): string
@@ -224,6 +377,8 @@ class InputImage
     }
 
     /**
+     * Get temporary local path for the source image.
+     *
      * @return string
      */
     public function sourceImagePath(): string
@@ -232,6 +387,8 @@ class InputImage
     }
 
     /**
+     * Get detected MIME type for the source image.
+     *
      * @return string
      */
     public function sourceImageMimeType(): string
@@ -245,13 +402,18 @@ class InputImage
         return $this->sourceImageMimeType;
     }
 
+    /**
+     * Get parsed metadata for the source image.
+     *
+     * @return ImageMetaInfo
+     */
     public function sourceImageInfo()
     {
         return $this->sourceImageInfo;
     }
 
     /**
-     * Source file mime type
+     * Source file mime type.
      *
      * @return string
      */
@@ -261,7 +423,7 @@ class InputImage
     }
 
     /**
-     * Is input file a pdf
+     * Check if the input file is a PDF.
      *
      * @return bool
      */
@@ -271,6 +433,8 @@ class InputImage
     }
 
     /**
+     * Check if the input file is a GIF.
+     *
      * @return bool
      */
     public function isInputGif(): bool

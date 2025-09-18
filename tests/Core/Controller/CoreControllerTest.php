@@ -3,7 +3,6 @@
 namespace Tests\Core\Controller;
 
 use Core\Controller\CoreController;
-//use Silex\WebTestCase;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 use Tests\Core\BaseTest;

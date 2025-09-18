@@ -1,7 +1,7 @@
 {
     "name": "flyimg/flyimg",
     "description": "Server image resizing and cropping on the fly base on ImageMagick+MozJPEG",
-    "version": "1.7.11",
+    "version": "1.8.0",
     "type": "project",
     "keywords": [
         "image",
