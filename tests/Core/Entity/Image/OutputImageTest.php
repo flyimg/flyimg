@@ -62,6 +62,7 @@ class OutputImageTest extends BaseTest
             'time' => '00:00:01',
             'colorspace' =>  'sRGB',
             'monochrome' => null,
+            'version' => null,
         ];
         $optionsBag = new OptionsBag($this->imageHandler->appParameters(), self::OPTION_URL);
         $inputImage = new InputImage($optionsBag, self::JPG_TEST_IMAGE);
