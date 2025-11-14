@@ -1,0 +1,50 @@
+[data-md-toggle="search"]:not(:checked) ~ .md-header .md-search__form::after {
+    position: absolute;
+    top: .3rem;
+    right: .3rem;
+    display: block;
+    padding: .1rem .4rem;
+    color: #ffffffb3;
+    font-weight: bold;
+    font-size: .8rem;
+    border: .05rem solid #ffffff3b;
+    border-radius: .1rem;
+    content: "/";
+  }
+
+
+[data-md-color-primary=light-blue] {
+    --md-primary-fg-color: #023951;
+    --md-primary-fg-color--light: #607c8a;
+    --md-primary-fg-color--dark: #455a63;
+    --md-primary-bg-color: #fffbfb;
+    --md-primary-bg-color--light: #ffffffb3;
+    --md-typeset-a-color: #4051b5;
+}
+
+[data-md-color-primary=dark-blue] {
+    --md-primary-fg-color: #023951;
+    --md-primary-fg-color--light: #607c8a;
+    --md-primary-fg-color--dark: #455a63;
+    --md-primary-bg-color: #fcfcfc;
+    --md-primary-bg-color--light: #ffffffb3;
+    --md-typeset-a-color: #4051b5;
+}
+
+.md-header__button:hover{
+    opacity: 1;
+}
+.md-typeset .twemoji {
+    color: #e92063;
+}
+@keyframes beat {
+    0%, 40%, 80%, 100% {
+        transform: scale(1);
+    }
+    20%, 60% {
+        transform: scale(1.15);
+    }
+}
+.beat {
+    animation: beat 1000ms infinite;
+}
