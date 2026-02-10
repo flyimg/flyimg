@@ -1,0 +1,2908 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.flyimg.io/url-options/">
+      
+      
+        <link rel="prev" href="../configuration/">
+      
+      
+        <link rel="next" href="../storage-options/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>URL Options - Flyimg</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","GT-5TPCQ2KS"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","GT-5TPCQ2KS",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=GT-5TPCQ2KS",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="flyimg" data-md-color-primary="dark-blue" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#url-options" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Flyimg" class="md-header__button md-logo" aria-label="Flyimg" data-md-component="logo">
+      
+  <img src="../assets/images/flyimg.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Flyimg
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              URL Options
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="flyimg" data-md-color-primary="dark-blue" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/flyimg/flyimg" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Flyimg" class="md-nav__button md-logo" aria-label="Flyimg" data-md-component="logo">
+      
+  <img src="../assets/images/flyimg.png" alt="logo">
+
+    </a>
+    Flyimg
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/flyimg/flyimg" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../helm-chart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helm Chart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    URL Options
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    URL Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#process-type-upload-or-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        process-type: upload or path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path_to_image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        path_to_image
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-sources-and-post-uploads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative sources and POST uploads
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternative sources and POST uploads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-uploads-recommended-for-large-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST uploads (recommended for large inputs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S3 sources
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image_options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        image_options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic geometry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic geometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w-width" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        w : width
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-height" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        h : height
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-width-and-height" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using width AND height
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-crop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c : crop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-gravity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        g : gravity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        t : text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tc-text-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tc : text-color
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ts-text-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ts : text-size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ts-text-size_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ts : text-size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tbg-text-bg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tbg : text-bg
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-rotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        r : rotate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-file-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output file formats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output file formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        o : output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        q : quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webpl-webp-lossless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        webpl : webp-lossless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webpm-webp-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        webpm : webp-method
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jxlef-jxl-effort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jxlef : jxl-effort
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jxlds-jxl-decoding-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jxlds : jxl-decoding-speed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refresh-or-re-fetch-source-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refresh or re-fetch source image
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Refresh or re-fetch source image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rf-refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rf : refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v-cache-busting-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v : cache-busting version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fancy-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fancy options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fancy options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bg-background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bg : background
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#st-strip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        st : strip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ao-auto-orient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ao : auto-orient
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rz-resize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rz : resize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moz-mozjpeg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        moz : mozjpeg
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsh-unsharp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unsh : unsharp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sh-sharpen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sh : sharpen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blr-blur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        blr : blur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        f : filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sc-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sc : scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fc-face-crop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fc : face-crop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fcp-face-crop-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fcp : face-crop-position
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fb-face-blur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fb : face-blur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smc-smart-crop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smc : smart-crop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdfp-pdf-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pdfp : pdf-page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnst-density" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dnst : density
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tm-video-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tm : video-time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clsp-colorspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clsp : colorspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mnchr-monochrome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mnchr : monochrome
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-extract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        e : extract
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="e : extract">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#p1x-extract-top-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p1x : extract-top-x
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p1y-extract-top-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p1y : extract-top-y
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p2x-extract-bottom-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p2x : extract-bottom-x
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p2y-extract-bottom-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p2y : extract-bottom-y
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sf-sampling-factor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sf : sampling-factor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ett-extent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ett : extent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#par-preserve-aspect-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        par : preserve-aspect-ratio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pns-preserve-natural-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pns : preserve-natural-size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gf-gif-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gf : gif-frame
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PDF options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdfp-page-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pdfp : page number
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Video options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tm-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tm : time
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Options keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-options-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default options values
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rate-limiting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rate Limiting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmark/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmark
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unit-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enable-xdebug/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enable XDebug
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#process-type-upload-or-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        process-type: upload or path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path_to_image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        path_to_image
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternative-sources-and-post-uploads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative sources and POST uploads
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternative sources and POST uploads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-uploads-recommended-for-large-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST uploads (recommended for large inputs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S3 sources
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image_options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        image_options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic geometry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic geometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w-width" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        w : width
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-height" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        h : height
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-width-and-height" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using width AND height
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-crop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c : crop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-gravity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        g : gravity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        t : text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tc-text-color" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tc : text-color
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ts-text-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ts : text-size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ts-text-size_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ts : text-size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tbg-text-bg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tbg : text-bg
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-rotate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        r : rotate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-file-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output file formats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output file formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        o : output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        q : quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webpl-webp-lossless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        webpl : webp-lossless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webpm-webp-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        webpm : webp-method
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jxlef-jxl-effort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jxlef : jxl-effort
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jxlds-jxl-decoding-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jxlds : jxl-decoding-speed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#refresh-or-re-fetch-source-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refresh or re-fetch source image
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Refresh or re-fetch source image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rf-refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rf : refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v-cache-busting-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v : cache-busting version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fancy-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fancy options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fancy options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bg-background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bg : background
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#st-strip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        st : strip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ao-auto-orient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ao : auto-orient
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rz-resize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rz : resize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moz-mozjpeg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        moz : mozjpeg
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsh-unsharp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unsh : unsharp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sh-sharpen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sh : sharpen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blr-blur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        blr : blur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        f : filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sc-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sc : scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fc-face-crop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fc : face-crop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fcp-face-crop-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fcp : face-crop-position
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fb-face-blur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fb : face-blur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smc-smart-crop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smc : smart-crop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdfp-pdf-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pdfp : pdf-page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnst-density" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dnst : density
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tm-video-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tm : video-time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clsp-colorspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clsp : colorspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mnchr-monochrome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mnchr : monochrome
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-extract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        e : extract
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="e : extract">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#p1x-extract-top-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p1x : extract-top-x
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p1y-extract-top-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p1y : extract-top-y
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p2x-extract-bottom-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p2x : extract-bottom-x
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p2y-extract-bottom-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p2y : extract-bottom-y
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sf-sampling-factor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sf : sampling-factor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ett-extent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ett : extent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#par-preserve-aspect-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        par : preserve-aspect-ratio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pns-preserve-natural-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pns : preserve-natural-size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gf-gif-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gf : gif-frame
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PDF options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdfp-page-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pdfp : page number
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#video-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Video options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Video options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tm-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tm : time
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Options keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-options-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default options values
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../configuration/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Docs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/flyimg/flyimg/edit/main/docs/url-options.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/flyimg/flyimg/raw/main/docs/url-options.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+    </a>
+  
+
+
+<h1 id="url-options">URL Options</h1>
+<p>This document lists and describes the full list of options available to be passed as parameters in the URL.</p>
+<p>The server is setup to perform operations based on the following URL pattern.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://server.address.io/[process-type]/[image_options]/[path_to_image]
+</code></pre></div>
+<p>for example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>https://demo.flyimg.io/upload/w_500/https://flyimg.io/demo-images/Citroen-DS.jpg
+</code></pre></div>
+<p>Explanation:</p>
+<h2 id="process-type-upload-or-path">process-type: <em>upload</em> or <em>path</em></h2>
+<p>There are 2 main proceses you can do for images.</p>
+<p>The first: <strong>upload</strong>, grabs an image from a URL, transforms it, saves it, and serves it, as an image, with all the appropriate headers.</p>
+<p>The second: <strong>path</strong>, grabs an image from a URL, transforms it, saves it, and returns the absolute path to the image as a string, in the body of the response.</p>
+<hr />
+<h2 id="path_to_image">path_to_image</h2>
+<p>It's the first operation the server does, it will try to get an image from the URI in the path, it can be relative to the local server, or absolute to the internet.</p>
+<p><strong>example:</strong> <code>https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<hr />
+<h2 id="alternative-sources-and-post-uploads">Alternative sources and POST uploads</h2>
+<p>In addition to fetching images from an HTTP/HTTPS URL, Flyimg supports:</p>
+<ul>
+<li>S3 references: <code>s3://&lt;bucket&gt;/&lt;key&gt;</code></li>
+<li>Direct POST uploads with the request body</li>
+</ul>
+<h3 id="post-uploads-recommended-for-large-inputs">POST uploads (recommended for large inputs)</h3>
+<ul>
+<li>Endpoint: <code>POST /upload/{image_options}</code></li>
+<li>Supported bodies:</li>
+<li><code>application/octet-stream</code> or any <code>image/*</code>: raw binary body</li>
+<li><code>application/json</code>: <code>{ "base64": "&lt;BASE64&gt;" }</code> or <code>{ "dataUri": "data:&lt;mime&gt;;base64,&lt;data&gt;" }</code></li>
+</ul>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/octet-stream&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--data-binary<span class="w"> </span>@tests/testImages/square.png<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>http://localhost:8080/upload/w_300,o_jpg<span class="w"> </span>-o<span class="w"> </span>out.jpg
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">B64</span><span class="o">=</span><span class="k">$(</span>base64<span class="w"> </span>-i<span class="w"> </span>tests/testImages/square.jpg<span class="k">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;{\&quot;base64\&quot;:\&quot;</span><span class="nv">$B64</span><span class="s2">\&quot;}&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>http://localhost:8080/upload/w_300,o_png<span class="w"> </span>-o<span class="w"> </span>out.png
+</code></pre></div>
+<h3 id="s3-sources">S3 sources</h3>
+<p>Fetch from S3 using a simple URI:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/upload/w_300/s3://my-bucket/path/to/image.png
+</code></pre></div>
+<p>Configuration for S3 endpoint/region is <em>required</em>, see configuration docs below.</p>
+<h2 id="image_options">image_options</h2>
+<p>Here you set all the transformations and output settings you want to apply to the image you are fetching.</p>
+<p>Most of these options are ImageMagick flags, many can get pretty advanced, use the <a href="http://www.imagemagick.org/script/command-line-options.php">ImageMagick docs</a>.
+We put a lot of defaults in place to prevent distortion, bad quality, weird cropping and unwanted paddings.</p>
+<p>The script <strong>does a lot of sanitizing</strong> of the parameters, so many options will not work or have to be carefully escaped. Priority is given to safety and eas of use.</p>
+<h2 id="basic-geometry">Basic geometry</h2>
+<h3 id="w-width"><code>w</code> : width</h3>
+<p><code>int</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Sets the target width of the image. If not set, width will be calculated in order to keep aspect ratio.</p>
+<p><strong>example:<code>w_100</code></strong></p>
+<p><code>w_100</code> : <code>https://demo.flyimg.io/upload/w_100/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="w_100" src="https://demo.flyimg.io/upload/w_100,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="h-height"><code>h</code> : height</h3>
+<p><code>int</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Sets the target height of the image. If not set, height will be calculated in order to keep aspect ratio.</p>
+<p><strong>example:<code>h_100</code></strong></p>
+<p><code>h_100</code> : <code>https://demo.flyimg.io/upload/h_100/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="h_100" src="https://demo.flyimg.io/upload/h_100,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="using-width-and-height">Using width AND height</h3>
+<p><strong>example:<code>h_300,w_300</code></strong>
+By default setting width and height together, works like defining a rectangle that will define a <strong>max-width</strong> and <strong>max-height</strong> and the image will scale propotionally to fit that area without cropping.</p>
+<!-- in the future put example images here-->
+
+<p>By default; width, height, or both will <strong>not scale up</strong> an image that is smaller than the defined dimensions.</p>
+<!-- in the future put example images here-->
+
+<p><code>h_300,w_300</code> : <code>https://demo.flyimg.io/upload/h_300,w_300/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="h_300,w_300" src="https://demo.flyimg.io/upload/h_300,w_300,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="c-crop"><code>c</code> : crop</h3>
+<p><code>bool</code>
+<em>Default:</em> <code>false</code>
+<em>Description:</em> When both width and height are set, this allows the image to be cropped, so it fills the <strong>width x height</strong> area.</p>
+<p><strong>example:<code>c_1</code></strong></p>
+<p><code>c_1,h_400,w_400</code> : <code>https://demo.flyimg.io/upload/c_1,h_400,w_400/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="c_1,h_400,w_400" src="https://demo.flyimg.io/upload/c_1,h_400,w_400,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="g-gravity"><code>g</code> : gravity</h3>
+<p><code>string</code>
+<em>Default:</em> <code>Center</code>
+<em>Description:</em> When crop is applied, changing the gravity will define which part of the image is kept inside the crop area.
+The basic options are: <code>NorthWest</code>, <code>North</code>, <code>NorthEast</code>, <code>West</code>, <code>Center</code>, <code>East</code>, <code>SouthWest</code>, <code>South</code>, <code>SouthEast</code>.</p>
+<p><strong>example:<code>g_West</code></strong></p>
+<h3 id="t-text"><code>t</code> : text</h3>
+<p><code>string</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Add text to the image (watermark).
+Use the gravity option <code>g</code> to define where the text will be placed.</p>
+<p><strong>example:<code>t_Hello</code></strong></p>
+<h3 id="tc-text-color"><code>tc</code> : text-color</h3>
+<p><code>string</code>
+<em>Default:</em> <code>white</code>
+<em>Description:</em> Set the color of the text.
+For the hex code, the hash <code>#</code> character should be replaced by <code>%23</code></p>
+<p><strong>example:<code>tc_%23ff4455</code>, <code>tc_red</code></strong></p>
+<h3 id="ts-text-size"><code>ts</code> : text-size</h3>
+<p><code>int</code>
+<em>Default:</em> <code>12</code>
+<em>Description:</em> Set the size of the text.</p>
+<p><strong>example:<code>ts_24</code></strong></p>
+<h3 id="ts-text-size_1"><code>ts</code> : text-size</h3>
+<p><code>int</code>
+<em>Default:</em> <code>12</code>
+<em>Description:</em> Set the size of the text.</p>
+<p><strong>example:<code>ts_24</code></strong></p>
+<h3 id="tbg-text-bg"><code>tbg</code> : text-bg</h3>
+<p><code>string</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Set the background color of the text.
+For the hex code, the hash <code>#</code> character should be replaced by <code>%23</code></p>
+<p><strong>example:<code>tbg_%23ff4455</code>, <code>tbg_red</code></strong></p>
+<p><img alt="t_by%20Flyimg,tc_%23bcc7c9,ts_44,tbg_%234f8400,g_SouthEast" src="https://demo.flyimg.io/upload/w_600,t_by%20Flyimg,tc_%23bcc7c9,ts_44,tbg_%234f8400,g_SouthEast,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="r-rotate"><code>r</code> : rotate</h3>
+<p><code>string</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Apply image rotation (using shear operations) to the image.</p>
+<p><strong>example: <code>r_90</code>, <code>r_-180</code>,...</strong></p>
+<p><code>r_45</code> : <code>https://demo.flyimg.io/upload/r_-45,w_400,h_400/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="r_45" src="https://demo.flyimg.io/upload/r_-45,w_400,h_400,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<hr />
+<h2 id="output-file-formats">Output file formats</h2>
+<h3 id="o-output"><code>o</code> : output</h3>
+<p><code>string</code>
+<em>Default:</em> <code>auto</code>
+<em>Description:</em> Output format requested, for example you can force the output as jpeg file in case of source file is png. The default <code>auto</code> will try to output the best format for the requesting browser, falling back to the same format as the source image or finally with a fallback to <strong>jpg</strong>.</p>
+<p>If <code>input</code> is passed, no "optimal" format will be attempted. Flyimg will try to respond with the source format or fallback to <code>jpg</code>.</p>
+<p>When <code>o_auto</code> is used, Flyimg negotiates the best format supported by the requester. The current order is: AVIF → JPEG XL (JXL) → WebP → PNG/JPEG. JPEG XL will only be selected if the request includes <code>Accept: image/jxl</code> and <code>enable_jxl</code> is true in configuration.</p>
+<p>Note: Browser support for JPEG XL is evolving. Many stable browsers still download JXL instead of displaying it inline. Use <code>o_auto</code> for production unless you specifically target clients with JXL support.</p>
+<p><strong>example:<code>o_auto</code>,<code>o_input</code>,<code>o_png</code>,<code>o_webp</code>,<code>o_avif</code>,<code>o_jxl</code>,<code>o_jpeg</code>,<code>o_jpg</code></strong></p>
+<h3 id="q-quality"><code>q</code> : quality</h3>
+<p><code>int</code> (0-100)
+<em>Default:</em> <code>90</code>
+<em>Description:</em> Sets the compression level for the output image. Your best results will be between <strong>70</strong> and <strong>95</strong>.</p>
+<p><strong>example:<code>q_100</code>,<code>q_75</code>,...</strong></p>
+<p><code>q_30</code> : <code>https://demo.flyimg.io/upload/q_30,w_600/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="q_30" src="https://demo.flyimg.io/upload/q_30,w_600,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<p><code>q_100</code> : <code>https://demo.flyimg.io/upload/q_100,w_600/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="q_100" src="https://demo.flyimg.io/upload/q_100,w_600,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="webpl-webp-lossless"><code>webpl</code> : webp-lossless</h3>
+<p><code>int</code>
+<em>Default:</em> <code>0</code>
+<em>Description:</em> If output is set to webp, it will default to lossy compression, but if you want lossless webp encoding you have to set it to 1.</p>
+<p><strong>example:<code>webpl_1</code></strong></p>
+<p><code>webpl_1</code> : <code>https://demo.flyimg.io/upload/webpl_1,w_600/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="webpl_1" src="https://demo.flyimg.io/upload/webpl_1,w_600,o_webp/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="webpm-webp-method"><code>webpm</code> : webp-method</h3>
+<p><code>string</code>
+<em>Default:</em> <code>4</code>
+<em>Description:</em> the compression method to use. It controls the trade off between encoding speed and the compressed file size and quality. Possible values range from 0 to 6. Default value is 4. When higher values are utilized, the encoder spends more time inspecting additional encoding possibilities and decide on the quality gain. Lower value might result in faster processing time at the expense of larger file size and lower compression quality.</p>
+<p><strong>example:<code>webpm_6</code></strong></p>
+<h3 id="jxlef-jxl-effort"><code>jxlef</code> : jxl-effort</h3>
+<p><code>int</code> (1-9)
+<em>Default:</em> <code>7</code>
+<em>Description:</em> Controls JPEG XL encoding effort (1 = fastest, 9 = slowest/best). Only applies when output is <code>o_jxl</code> or when auto-negotiation selects JXL.</p>
+<p><strong>example:<code>jxlef_9</code></strong></p>
+<h3 id="jxlds-jxl-decoding-speed"><code>jxlds</code> : jxl-decoding-speed</h3>
+<p><code>int</code> (0-4)
+<em>Default:</em> <code>0</code>
+<em>Description:</em> Set the JPEG XL decoding speed. Valid values are in the range of 0 (slowest) to 4 (fastest, at the cost of some quality/density).</p>
+<p><strong>example:<code>jxlds_4</code></strong></p>
+<h2 id="refresh-or-re-fetch-source-image">Refresh or re-fetch source image</h2>
+<h3 id="rf-refresh"><code>rf</code> : refresh</h3>
+<p><em>Default:</em> <code>false</code>
+<em>Description:</em> When this parameter is 1, it will force a re-request of the original image and run it through the transformations and compression again. It will delete the local cached copy.</p>
+<p><strong>example:<code>rf_1</code></strong></p>
+<p>The nginx server will send headers to prevent caching of this request.</p>
+<p>It will also send headers with the command done on the image + info returned by the command identity from Imagemagick.</p>
+<h3 id="v-cache-busting-version"><code>v</code> : cache-busting version</h3>
+<p><code>string | int</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> You can pass cache-busting parameters of any kind to the URL which will break cache in modern proxies and browsers. Using <code>v</code> forces clients and intermediaries to fetch a fresh asset. For example, adding <code>v_1</code> to the parameters will generate a new image in Flyimg and cause browsers to get the new version. The value is arbitrary; you can increment it or use a hash.</p>
+<p><strong>example:</strong> <code>v_1</code></p>
+<p><code>https://demo.flyimg.io/upload/w_500,v_1/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<blockquote>
+<p>Tip: <code>v</code> is a generic option that does not change processing. It is solely for cache-busting and can be any value.</p>
+</blockquote>
+<hr />
+<h2 id="fancy-options">Fancy options</h2>
+<h3 id="bg-background"><code>bg</code> : background</h3>
+<p><code>color</code> (multiple formats)
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Sets the background of the canvas for the cases where padding is added to the images. It supports hex, css color names, rgb.
+Only css color names are supported without quotation marks.
+For the hex code, the hash <code>#</code> character should be replaced by <code>%23</code></p>
+<p><strong>example:<code>bg_red</code>,<code>bg_%23ff4455</code>,<code>bg_rgb(255,120,100)</code>,...</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">  </span><span class="o">[</span>...<span class="o">]</span><span class="w"> </span>-background<span class="w"> </span>red<span class="w"> </span>...
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="o">[</span>...<span class="o">]</span><span class="w"> </span>-background<span class="w"> </span><span class="s2">&quot;#ff4455&quot;</span><span class="w"> </span>-&gt;<span class="w"> </span><span class="s2">&quot;%23ff4455&quot;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="o">[</span>...<span class="o">]</span><span class="w"> </span>-background<span class="w"> </span><span class="s2">&quot;rgb(255,120,100)&quot;</span><span class="w"> </span>...
+</code></pre></div>
+<p><code>https://demo.flyimg.io/upload/r_45,w_400,h_400,bg_red/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="bg_red" src="https://demo.flyimg.io/upload/r_45,w_400,h_400,bg_red,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="st-strip"><code>st</code> : strip</h3>
+<p><code>int</code>
+<em>Default:</em> <code>1</code>
+<em>Description:</em> removes exif data and additional color profile. Leaving your image with the default sRGB color profile.</p>
+<p><strong>example:<code>st_1</code></strong></p>
+<h3 id="ao-auto-orient"><code>ao</code> : auto-orient</h3>
+<p><code>int</code>
+<em>Default:</em> <code>0</code>
+<em>Description:</em> Adjusts an image so that its orientation is suitable for viewing (i.e. top-left orientation).</p>
+<p><strong>example:<code>ao_1</code></strong></p>
+<h3 id="rz-resize"><code>rz</code> : resize</h3>
+<p><code>int</code> <em>Default:</em> <code>null</code>
+<em>Description:</em> The alternative resizing method to -thumbnail.</p>
+<p><strong>example:<code>rz_1</code></strong></p>
+<h3 id="moz-mozjpeg"><code>moz</code> : mozjpeg</h3>
+<p><em>Default:</em> <code>1</code>
+<em>Description:</em> Use moz-jpeg compression library, if <code>0</code> it fallsback to the default ImageMagick compression algorithm.</p>
+<h3 id="unsh-unsharp"><code>unsh</code> : unsharp</h3>
+<p><code>{radius}x{sigma}[+gain][+threshold]</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Sharpens an image (despite the unfortunate naming). It basically sharpens via subtracting a blurred, low contrast, version of the image to the image itself. For more details check <a href="http://www.imagemagick.org/script/command-line-options.php#unsharp">Imagemagick docs</a>.</p>
+<p><strong>example 1:<code>unsh_0x6</code></strong><br />
+<strong>example 2:<code>unsh_0.25x0.25+8+0.065</code></strong></p>
+<h3 id="sh-sharpen"><code>sh</code> : sharpen</h3>
+<p><code>{radius}x{sigma}</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Use a Gaussian operator of the given radius and standard deviation (sigma). For more details check <a href="http://www.imagemagick.org/script/command-line-options.php#sharpen">Imagemagick docs</a>.</p>
+<p><strong>example 1:<code>sh_3</code></strong><br />
+<strong>example 2:<code>sh_0x5</code></strong></p>
+<h3 id="blr-blur"><code>blr</code> : blur</h3>
+<p><code>{radius}x{sigma}</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Apply Blur on a image. For more details check <a href="http://www.imagemagick.org/script/command-line-options.php#blur">Imagemagick docs</a>.</p>
+<p><strong>example 1:<code>blr_2</code></strong><br />
+<strong>example 2:<code>blr_1x2</code></strong></p>
+<h3 id="f-filter"><code>f</code> : filter</h3>
+<p><code>string</code>
+<em>Default:</em> <code>Lanczos</code>
+<em>Description:</em> Resizing algorithm, Triangle is a smoother lighter option</p>
+<p><strong>example:<code>f_Triangle</code></strong></p>
+<h3 id="sc-scale"><code>sc</code> : scale</h3>
+<p><em>Default:</em> <code>null</code>
+<em>Description:</em> The "-scale" resize operator is a simplified, faster form of the resize command. Useful for fast exact scaling of pixels.</p>
+<p><strong>example:<code>sc_1</code></strong></p>
+<h3 id="fc-face-crop"><code>fc</code> : face-crop</h3>
+<p><code>int</code>
+<em>Default:</em> <code>0</code>
+<em>Description:</em> Using <a href="https://github.com/wavexx/facedetect">facedetect</a> repository to detect faces and passe the coordinates to ImageMagick to crop.</p>
+<p><strong>example:<code>fc_1</code></strong></p>
+<p><code>fc_1</code> : <code>https://demo.flyimg.io/upload/fc_1/http://facedetection.jaysalvat.com/img/faces.jpg</code></p>
+<p><img alt="fc_1" src="https://demo.flyimg.io/upload/fc_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg" /></p>
+<h3 id="fcp-face-crop-position"><code>fcp</code> : face-crop-position</h3>
+<p><code>int</code>
+<em>Default:</em> <code>0</code>
+<em>Description:</em> When using the Face crop option and when the image contain more than one face, you can specify which one you want get cropped</p>
+<p><strong>example:<code>fcp_1</code>,<code>fcp_0</code>,...</strong></p>
+<p><code>fcp_2</code> : <code>https://demo.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg</code></p>
+<p><img alt="fcp_2" src="https://demo.flyimg.io/upload/fc_1,fcp_2/http://facedetection.jaysalvat.com/img/faces.jpg" /></p>
+<h3 id="fb-face-blur"><code>fb</code> : face-blur</h3>
+<p><code>int</code>
+<em>Default:</em> <code>0</code>
+<em>Description:</em> Apply blur effect on faces in a given image</p>
+<p><strong>example:<code>fb_1</code></strong></p>
+<p><code>fb_1</code> : <code>https://demo.flyimg.io/upload/fb_1/http://facedetection.jaysalvat.com/img/faces.jpg</code></p>
+<p><img alt="fb_1" src="https://demo.flyimg.io/upload/fb_1,o_jpg/http://facedetection.jaysalvat.com/img/faces.jpg" /></p>
+<h3 id="smc-smart-crop"><code>smc</code> : smart-crop</h3>
+<p><code>int</code>
+<em>Default:</em> <code>0</code>
+<em>Description:</em> Use smart crop to get the best possible crop of the image.</p>
+<p><strong>example:<code>smc_1</code></strong></p>
+<ul>
+<li>Image: <code>https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg</code></li>
+<li>Width: 500</li>
+<li>Smart Crop: <code>smc_1</code></li>
+</ul>
+<p><strong>Without Smart Crop</strong></p>
+<p><code>https://demo.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg</code></p>
+<p><img alt="lago_ranco" src="https://demo.flyimg.io/upload/w_500/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg" /></p>
+<p><strong>With Smart Crop Enabled</strong></p>
+<p><code>https://demo.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg</code></p>
+<p><img alt="lago_ranco" src="https://demo.flyimg.io/upload/w_500,smc_1/https://images.pexels.com/photos/1280553/pexels-photo-1280553.jpeg" /></p>
+<h3 id="pdfp-pdf-page"><code>pdfp</code> : pdf-page</h3>
+<p><code>int</code>
+<em>Default:</em> <code>1</code>
+<em>Description:</em> Sets the target page of the PDF. If not set, the default is page 1.</p>
+<p><strong>example:<code>pdfp_1</code></strong></p>
+<ul>
+<li>PDF: <code>https://flyimg.io/demo-images/lighthouses.pdf</code></li>
+<li>Width: 200</li>
+<li>Height: 200</li>
+<li>Page: <code>pdfp_1</code></li>
+</ul>
+<p><code>https://demo.flyimg.io/upload/w_200,h_200,pdfp_1/https://flyimg.io/demo-images/lighthouses.pdf</code></p>
+<p><img alt="lago_ranco" src="https://demo.flyimg.io/upload/w_200,h_200,pdfp_1/https://flyimg.io/demo-images/lighthouses.pdf" /></p>
+<h3 id="dnst-density"><code>dnst</code> : density</h3>
+<p><code>int</code><br />
+<em>Default:</em> 72<br />
+<em>Description:</em> Sets the PDF density. If not set, the default is 72.</p>
+<p><strong>example:<code>dnst_300</code></strong></p>
+<p><code>dnst_300</code> : <code>https://demo.flyimg.io/upload/dnst_300,pdfp_1/https://flyimg.io/demo-images/lighthouses.pdf</code></p>
+<h3 id="tm-video-time"><code>tm</code> : video-time</h3>
+<p><code>string</code>
+<em>Default:</em> <code>00:00:01</code>
+<em>Description:</em> Sets the frame capture time duration point in the video. If not set, the default is 1 second. The format is <code>HH:MM:SS</code> OR <code>SS</code></p>
+<p><strong>example:<code>tm_00:00:05</code></strong></p>
+<ul>
+<li>Video: <code>https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4</code></li>
+<li>Width: 200</li>
+<li>Height: 200</li>
+<li>Time: <code>tm_00:00:05</code></li>
+</ul>
+<p><code>https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4</code></p>
+<p><img alt="lago_ranco" src="https://demo.flyimg.io/upload/w_200,h_200,tm_00:00:05/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4" /></p>
+<h3 id="clsp-colorspace"><code>clsp</code> : colorspace</h3>
+<p><code>string</code>
+<em>Default:</em> <code>null</code>
+<em>Description:</em> Convert the image to a different colorspace.</p>
+<p><strong>example:<code>clsp_Gray</code></strong></p>
+<ul>
+<li>Image: <code>https://flyimg.io/demo-images/Citroen-DS.jpg</code></li>
+<li>Width: 400</li>
+<li>Colorspace: <code>clsp_Gray</code></li>
+</ul>
+<p><code>https://demo.flyimg.io/upload/w_400,clsp_Gray/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="lago_ranco" src="https://demo.flyimg.io/upload/w_400,clsp_Gray,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="mnchr-monochrome"><code>mnchr</code> : monochrome</h3>
+<p><code>int</code>
+<em>Default:</em> <code>0</code>
+<em>Description:</em> Convert the image to monochrome.</p>
+<p><strong>example:<code>mnchr_1</code></strong></p>
+<ul>
+<li>Image: <code>https://flyimg.io/demo-images/Citroen-DS.jpg</code></li>
+<li>Width: 400</li>
+<li>Monochrome: <code>mnchr_1</code></li>
+</ul>
+<p><code>https://demo.flyimg.io/upload/w_400,mnchr_1/https://flyimg.io/demo-images/Citroen-DS.jpg</code></p>
+<p><img alt="lago_ranco" src="https://demo.flyimg.io/upload/w_400,mnchr_1,o_jpg/https://flyimg.io/demo-images/Citroen-DS.jpg" /></p>
+<h3 id="e-extract"><code>e</code> : extract</h3>
+<h4 id="p1x-extract-top-x"><code>p1x</code> : extract-top-x</h4>
+<h4 id="p1y-extract-top-y"><code>p1y</code> : extract-top-y</h4>
+<h4 id="p2x-extract-bottom-x"><code>p2x</code> : extract-bottom-x</h4>
+<h4 id="p2y-extract-bottom-y"><code>p2y</code> : extract-bottom-y</h4>
+<p><em>Default:</em> <code>null</code></p>
+<p><em>Description:</em> Extract and crop an image with given the x/y coordinates of each booth top and bottom.</p>
+<h3 id="sf-sampling-factor"><code>sf</code> : sampling-factor</h3>
+<p><em>Default:</em> <code>1x1</code>
+<em>Description:</em> ...</p>
+<h3 id="ett-extent"><code>ett</code> : extent</h3>
+<p><em>Default:</em> <code>null</code>
+<em>Description:</em> ... not ready</p>
+<h3 id="par-preserve-aspect-ratio"><code>par</code> : preserve-aspect-ratio</h3>
+<p><code>int</code>
+<em>Default:</em> <code>1</code>
+<em>Description:</em> If set to 0, when passing width and height to an image, the image will be distorted to fill the size of the rectangle defined by width and height.</p>
+<h3 id="pns-preserve-natural-size"><code>pns</code> : preserve-natural-size</h3>
+<p><code>int</code>
+<em>Default:</em> <code>1</code>
+<em>Description:</em> If set to 0 and if the source image is smaller than the target dimensions, the image will be stretched to the target size.</p>
+<h3 id="gf-gif-frame"><code>gf</code> : gif-frame</h3>
+<p><code>int</code>
+<em>Default:</em> <code>0</code>
+<em>Description:</em> ...</p>
+<h3 id="pdf-options">PDF options</h3>
+<p>Requires <code>ghostscript</code> installation in the Dockerfile.</p>
+<h4 id="pdfp-page-number"><code>pdfp</code> : page number</h4>
+<p><code>int</code><br />
+<em>Default:</em> 1<br />
+<em>Description:</em> Sets the target page of the PDF. If not set, the default is page 1.</p>
+<p><strong>example:<code>pdfp_2</code></strong></p>
+<p><code>pdfp_2</code> : <code>https://demo.flyimg.io/upload/pdfp_2,w_300/https://flyimg.io/demo-images/lighthouses.pdf</code></p>
+<p><img alt="pdfp_2" src="https://demo.flyimg.io/upload/pdfp_2,w_300/https://flyimg.io/demo-images/lighthouses.pdf" /></p>
+<h3 id="video-options">Video options</h3>
+<p>Requires <code>ffmpeg</code> installation in the Dockerfile.</p>
+<h4 id="tm-time"><code>tm</code> : time</h4>
+<p><code>string</code><br />
+<em>Default:</em> <code>00:00:01</code><br />
+<em>Description:</em> Sets the frame capture time duration point in the video. If not set, the default is 1 second. The format is <code>HH:MM:SS</code> OR <code>SS</code></p>
+<p><strong>example:<code>tm_00:00:05</code></strong></p>
+<p><code>tm_00:00:05</code> : <code>https://demo.flyimg.io/upload/tm_00:00:05/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4</code></p>
+<p><img alt="tm_00:00:05" src="https://demo.flyimg.io/upload/tm_00:00:05/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4" /></p>
+<p>You can also use a shorter syntax for the first 60 seconds.</p>
+<p><strong>example:<code>tm_10</code></strong></p>
+<p><code>tm_10</code> : <code>https://demo.flyimg.io/upload/tm_10/https://flyimg.io/demo-images/big_buck_bunny_720p_2mb.mp4</code></p>
+<hr />
+<h2 id="options-keys">Options keys</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>options_keys:
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  moz: mozjpeg
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  q: quality
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  o: output
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  unsh: unsharp
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  fc: face-crop
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  fcp: face-crop-position
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  fb: face-blur
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  w: width
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>  h: height
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>  c: crop
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>  bg: background
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  st: strip
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>  rz: resize
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>  g: gravity
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>  f: filter
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>  r: rotate
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>  sc: scale
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>  sf: sampling-factor
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>  rf: refresh
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>  ett: extent
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>  par: preserve-aspect-ratio
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>  pns: preserve-natural-size
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>  webpl: webp-lossless
+</code></pre></div>
+<h2 id="default-options-values">Default options values</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>default_options:
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  mozjpeg: 1
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  quality: 90
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  output: auto
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>  unsharp: null
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>  face-crop: 0
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>  face-crop-position: 0
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>  face-blur: 0
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>  width: null
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>  height: null
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>  crop: null
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>  background: null
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>  strip: 1
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>  resize: null
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>  gravity: Center
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>  filter: Lanczos
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>  rotate: null
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>  scale: null
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>  sampling-factor: 1x1
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>  refresh: false
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>  extent: null
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>  preserve-aspect-ratio: 1
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>  preserve-natural-size: 1
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>  webp-lossless: 0
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Configuration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Configuration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../storage-options/" class="md-footer__link md-footer__link--next" aria-label="Next: Storage Options">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Storage Options
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Flyimg
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.view", "content.action.edit", "content.code.copy", "navigation.footer", "navigation.instant", "navigation.top", "navigation.path", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
