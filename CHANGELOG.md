@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.2](https://github.com/flyimg/flyimg/compare/1.12.1...1.12.2) (2026-06-24)
+
+
+### Bug Fixes
+
+* update compose to fix security vulnerabilities ([8fc4aa3](https://github.com/flyimg/flyimg/commit/8fc4aa3cb39a6617c210becdcbbbc5671c39240a))
+
 ## [1.12.1](https://github.com/flyimg/flyimg/compare/1.12.0...1.12.1) (2026-06-10)
 
 
