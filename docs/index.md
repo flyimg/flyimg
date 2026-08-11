@@ -129,11 +129,11 @@ Does your company use Flyimg? If not, consider asking your manager or marketing 
 
 ## Star History
 
-<a href="https://star-history.com/#flyimg/flyimg&Date">
+<a href="https://star-history.dera.page/#flyimg/flyimg&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=flyimg/flyimg&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=flyimg/flyimg&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=flyimg/flyimg&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=flyimg/flyimg&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=flyimg/flyimg&type=Date" />
+   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=flyimg/flyimg&type=Date" />
  </picture>
 </a>
 
