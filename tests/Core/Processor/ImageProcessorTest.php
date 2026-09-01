@@ -2,7 +2,9 @@
 
 namespace Tests\Core\Processor;
 
+use Core\Entity\Command;
 use Core\Processor\ImageProcessor;
+use Core\Processor\Processor;
 use Core\Entity\Image\OutputImage;
 use Core\Entity\ImageMetaInfo;
 use Tests\Core\BaseTest;
@@ -329,5 +331,42 @@ class ImageProcessorTest extends BaseTest
             'default (par_1) preserves aspect ratio for landscape' =>
             ['w_200,h_300', '200x133', self::PNG_TEST_LANDSCAPE_IMAGE],
         ];
+    }
+
+    /**
+     * Palette PNG with transparency (PNG8 + tRNS) must convert to JPEG at native
+     * size. Without -type TrueColor, MozJPEG rejects the colormapped TGA pipe.
+     *
+     * @throws \Exception
+     */
+    public function testPalettePngWithTransparencyConvertsToJpeg()
+    {
+        $png8Path = sys_get_temp_dir() . '/flyimg-palette-trns.png';
+        $createPng = new Command(Processor::IM_CONVERT_COMMAND);
+        $createPng->addArgument('-size', '64x64')
+            ->addArgument('xc:none')
+            ->addArgument('-fill', 'red')
+            ->addArgument('-draw', 'circle 32,32 32,8')
+            ->addArgument('PNG8:' . $png8Path);
+        $this->imageProcessor->execute($createPng);
+
+        $image = $this->imageHandler->processImage('o_jpg,rf_1', $png8Path);
+        $this->generatedImage[] = $image;
+
+        $this->assertFileExists($image->getOutputTmpPath());
+        $this->assertEquals('image/jpeg', (new ImageMetaInfo($image->getOutputTmpPath()))->mimeType());
+        $this->assertEquals(
+            '64x64',
+            $this->imageInfo($image->getOutputTmpPath())[ImageMetaInfo::IMAGE_PROP_DIMENSIONS]
+        );
+
+        if (is_executable(Processor::MOZJPEG_COMMAND)) {
+            $this->assertStringContainsString('-type TrueColor', $image->getCommandString());
+            $this->assertStringContainsString('TGA:-', $image->getCommandString());
+        }
+
+        if (file_exists($png8Path)) {
+            unlink($png8Path);
+        }
     }
 }

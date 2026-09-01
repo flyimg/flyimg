@@ -13,8 +13,8 @@ use Monolog\Registry;
  */
 class Processor
 {
-    /** MozJPEG bin path */
-    public const MOZJPEG_COMMAND = '/opt/mozjpeg/cjpeg';
+    /** MozJPEG bin path (make install places the binary in bin/) */
+    public const MOZJPEG_COMMAND = '/opt/mozjpeg/bin/cjpeg';
 
     /** ImageMagick bin path*/
     public const IM_CONVERT_COMMAND = '/usr/local/bin/magick';
