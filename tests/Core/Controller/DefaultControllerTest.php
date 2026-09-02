@@ -6,6 +6,8 @@ use Core\Exception\ExecFailedException;
 use Core\Exception\InvalidArgumentException;
 use Core\Exception\AppException;
 use Core\Exception\ReadFileException;
+use Core\Entity\Image\InputImage;
+use Core\Entity\ImageMetaInfo;
 use Silex\WebTestCase;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -89,14 +91,19 @@ class DefaultControllerTest extends BaseTest
     {
         $client = static::createClient();
         $client->request('GET', 'upload/o_jxl,jxlef_9/' . BaseTest::PNG_TEST_IMAGE);
-        $expectedSize = filesize(parent::JXL_TEST_IMAGE_RESULT);
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertEquals(InputImage::JXL_MIME_TYPE, $client->getResponse()->headers->get('Content-Type'));
+
         $tmpFile = tempnam(sys_get_temp_dir(), 'jxl_test');
         file_put_contents($tmpFile, $client->getResponse()->getContent());
-        $this->assertEquals($expectedSize, filesize($tmpFile));
-        unlink($tmpFile);
-
-        $this->assertTrue($client->getResponse()->isOk());
-        $this->assertFalse($client->getResponse()->isEmpty());
+        try {
+            $outputInfo = new ImageMetaInfo($tmpFile);
+            $expectedInfo = new ImageMetaInfo(parent::JXL_TEST_IMAGE_RESULT);
+            $this->assertEquals($expectedInfo->format(), $outputInfo->format());
+            $this->assertEquals($expectedInfo->dimensions(), $outputInfo->dimensions());
+        } finally {
+            unlink($tmpFile);
+        }
     }
 
     public function testUploadActionGif()

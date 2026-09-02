@@ -238,7 +238,8 @@ class ImageProcessor extends Processor
                 " " . escapeshellarg($outputImage->getOutputTmpPath());
         } elseif (is_executable(self::MOZJPEG_COMMAND) && $outputImage->isOutputMozJpeg()) {
             /** MozJpeg compression */
-            $parameter = "TGA:- | " . escapeshellarg(self::MOZJPEG_COMMAND)
+            // Force truecolor TGA: MozJPEG rejects paletted TGA with 32-bit colormap (PNG8 + tRNS).
+            $parameter = "-type TrueColor TGA:- | " . escapeshellarg(self::MOZJPEG_COMMAND)
                 . " -quality " . escapeshellarg($quality)
                 . " -outfile " . escapeshellarg($outputImage->getOutputTmpPath())
                 . " -targa";
