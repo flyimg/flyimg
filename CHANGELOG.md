@@ -1,5 +1,13 @@
 # Flyimg Changelog
 
+## [1.12.5](https://github.com/flyimg/flyimg/compare/1.12.4...1.12.5) (2026-09-02)
+
+
+### Bug Fixes
+
+* restore MozJPEG output for palette PNGs with transparency ([ef348cf](https://github.com/flyimg/flyimg/commit/ef348cf4a473345457d3daa6c054f98c3203357a)), closes [#622](https://github.com/flyimg/flyimg/issues/622)
+* stop comparing JPEG XL output by exact file size ([23d66eb](https://github.com/flyimg/flyimg/commit/23d66eb3538ba6e8d726fc30d87dc5b8fa8207ea))
+
 ## [1.12.4](https://github.com/flyimg/flyimg/compare/1.12.3...1.12.4) (2026-07-27)
 
 
