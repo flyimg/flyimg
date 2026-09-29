@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.6](https://github.com/flyimg/flyimg/compare/1.12.5...1.12.6) (2026-09-29)
+
+
+### Bug Fixes
+
+* encode webp with cwebp instead of imagemagick defines ([dde396d](https://github.com/flyimg/flyimg/commit/dde396d63cbdfde08e02c09225f396d66052ff6d))
+
 ## [1.12.5](https://github.com/flyimg/flyimg/compare/1.12.4...1.12.5) (2026-09-02)
 
 
