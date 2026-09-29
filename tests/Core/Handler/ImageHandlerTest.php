@@ -3,6 +3,7 @@
 namespace Tests\Core\Service;
 
 use Core\Entity\Image\InputImage;
+use Core\Processor\Processor;
 use Symfony\Component\HttpFoundation\Request;
 use Tests\Core\BaseTest;
 
@@ -31,6 +32,44 @@ class ImageHandlerTest extends BaseTest
         $this->generatedImage[] = $image;
         $this->assertFileExists($image->getOutputTmpPath());
         $this->assertEquals(InputImage::WEBP_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
+        $this->assertWebpEncoder($image->getCommandString(), '4');
+    }
+
+    /**
+     * Same shape as /upload/q_80,o_webp/<jpeg>: cwebp encodes, and a hostile
+     * webpm value must not reach the shell.
+     */
+    public function testWebpQualityCommandIsSafe()
+    {
+        $image = $this->imageHandler->processImage('q_80,o_webp,rf_1', parent::PNG_TEST_IMAGE);
+        $this->generatedImage[] = $image;
+        $this->assertFileExists($image->getOutputTmpPath());
+        $this->assertEquals(InputImage::WEBP_MIME_TYPE, $this->getFileMimeType($image->getOutputTmpPath()));
+        $this->assertWebpEncoder($image->getCommandString(), '4');
+
+        $hostile = $this->imageHandler->processImage('q_80,o_webp,webpm_4;id,rf_1', parent::PNG_TEST_IMAGE);
+        $this->generatedImage[] = $hostile;
+        $command = $hostile->getCommandString();
+        $this->assertWebpEncoder($command, '4');
+        $this->assertStringNotContainsString(';id', $command);
+        $this->assertEquals(InputImage::WEBP_MIME_TYPE, $this->getFileMimeType($hostile->getOutputTmpPath()));
+    }
+
+    /**
+     * @param string $command
+     * @param string $method
+     */
+    private function assertWebpEncoder(string $command, string $method): void
+    {
+        if (!is_executable(Processor::CWEBP_COMMAND)) {
+            return;
+        }
+
+        $this->assertStringContainsString("'" . Processor::CWEBP_COMMAND . "'", $command);
+        $this->assertStringContainsString("-m '" . $method . "'", $command);
+        $this->assertStringNotContainsString('webp:thread-level', $command);
+        $this->assertStringNotContainsString('webp:method', $command);
+        $this->assertStringNotContainsString(';id', $command);
     }
 
     /**
