@@ -100,6 +100,25 @@ class AppErrorHandlerTest extends BaseTest
         $this->assertSame(405, $client->getResponse()->getStatusCode());
     }
 
+    public function testEmptySourceThroughKernelReturns400()
+    {
+        $this->app->error($this->app['error.handler']);
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_100');
+        $this->assertSame(400, $client->getResponse()->getStatusCode());
+
+        $client->request('GET', '/upload/w_100/');
+        $this->assertSame(400, $client->getResponse()->getStatusCode());
+    }
+
+    public function testMissingLocalFileThroughKernelReturns404()
+    {
+        $this->app->error($this->app['error.handler']);
+        $client = static::createClient();
+        $client->request('GET', '/upload/w_100/not-a-url');
+        $this->assertSame(404, $client->getResponse()->getStatusCode());
+    }
+
     /**
      * Creates the application.
      */
