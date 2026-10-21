@@ -48,7 +48,15 @@ $exceptionHandlerFunction = function (\Exception $e) use ($app): Response {
         ]
     );
     $htmlErrorHandler = new ErrorHandler($app['params']->parameterByKey('debug'));
-    $response = new Response($htmlErrorHandler->render($e)->getAsString(), 500);
+    $flattenException = $htmlErrorHandler->render($e);
+    // Use the HTTP status code carried by the exception (404 for unknown routes,
+    // 405 for wrong methods, 400/403/404 for app exceptions...) instead of always
+    // answering 500. Non-HTTP exceptions still end up as 500.
+    $response = new Response(
+        $flattenException->getAsString(),
+        $flattenException->getStatusCode(),
+        $flattenException->getHeaders()
+    );
     // Handle rate limit exceptions with appropriate response
     if ($e instanceof RateLimitExceededException) {
         $limit = $e->getLimit();
@@ -65,6 +73,9 @@ $exceptionHandlerFunction = function (\Exception $e) use ($app): Response {
     }
     return $response;
 };
+
+// Exposed as a protected service so it can be unit tested.
+$app['error.handler'] = $app->protect($exceptionHandlerFunction);
 
 if (!isset($_ENV['env']) || $_ENV['env'] !== 'test') {
     $app->error($exceptionHandlerFunction);
