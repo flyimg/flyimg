@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.9](https://github.com/flyimg/flyimg/compare/1.12.8...1.12.9) (2026-10-22)
+
+
+### Bug Fixes
+
+* update base image to 1.8.6 to address PHP vulnerability ([ccc7ba4](https://github.com/flyimg/flyimg/commit/ccc7ba49961c52f29b974c70ba80462093e61f6d)), closes [#631](https://github.com/flyimg/flyimg/issues/631)
+
 ## [1.12.8](https://github.com/flyimg/flyimg/compare/1.12.7...1.12.8) (2026-10-22)
 
 
