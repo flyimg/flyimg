@@ -333,13 +333,16 @@ class InputImage
             }
             curl_close($ch);
         } else {
-            // Handle local file
-            if (file_exists($this->sourceImageUrl)) {
-                $imageData = file_get_contents($this->sourceImageUrl);
-                file_put_contents($this->sourceImagePath, $imageData);
-            } else {
-                throw new ReadFileException('File ' . $this->sourceImageUrl . ' does not exist.');
+            // Handle local file. A missing or unreadable source is a client
+            // error (400 / 404), not a server-side read failure.
+            if ($this->sourceImageUrl === '') {
+                throw new InvalidArgumentException('Source image is missing');
             }
+            if (!file_exists($this->sourceImageUrl)) {
+                throw new FileNotFoundException('File ' . $this->sourceImageUrl . ' does not exist.');
+            }
+            $imageData = file_get_contents($this->sourceImageUrl);
+            file_put_contents($this->sourceImagePath, $imageData);
         }
     }
 

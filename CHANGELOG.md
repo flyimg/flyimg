@@ -1,5 +1,19 @@
 # Flyimg Changelog
 
+## [1.12.8](https://github.com/flyimg/flyimg/compare/1.12.7...1.12.8) (2026-10-22)
+
+
+### Bug Fixes
+
+* answer 400/404 for a missing or non-existing source instead of 503 ([2ec046c](https://github.com/flyimg/flyimg/commit/2ec046c286bafeeeb3dc9737df1e4a58d3fdb7b4))
+
+## [1.12.7](https://github.com/flyimg/flyimg/compare/1.12.6...1.12.7) (2026-10-21)
+
+
+### Bug Fixes
+
+* return the exception HTTP status code instead of always 500 ([8fa0b6c](https://github.com/flyimg/flyimg/commit/8fa0b6cbdb5c11ab6397c128c433d35b1ba73199))
+
 ## [1.12.6](https://github.com/flyimg/flyimg/compare/1.12.5...1.12.6) (2026-09-29)
 
 
