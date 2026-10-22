@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.10](https://github.com/flyimg/flyimg/compare/1.12.9...1.12.10) (2026-10-22)
+
+
+### Bug Fixes
+
+* update base image to 1.8.7 ([5c1c794](https://github.com/flyimg/flyimg/commit/5c1c794fe3dd5665fdd7cf07be1e0eb1e0dcd9c8))
+
 ## [1.12.9](https://github.com/flyimg/flyimg/compare/1.12.8...1.12.9) (2026-10-22)
 
 
