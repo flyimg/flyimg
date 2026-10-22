@@ -5,7 +5,7 @@ namespace Tests\Core\Controller;
 use Core\Exception\ExecFailedException;
 use Core\Exception\InvalidArgumentException;
 use Core\Exception\AppException;
-use Core\Exception\ReadFileException;
+use Core\Exception\FileNotFoundException;
 use Core\Entity\Image\InputImage;
 use Core\Entity\ImageMetaInfo;
 use Silex\WebTestCase;
@@ -334,7 +334,7 @@ class DefaultControllerTest extends BaseTest
 
     public function testUploadActionForbidden()
     {
-        $this->expectException(ReadFileException::class);
+        $this->expectException(FileNotFoundException::class);
         $client = static::createClient();
         $client->request('GET', '/upload/w_200,h_200,c_1/Rovinj-Croatia-nonExist.jpg');
     }
@@ -356,7 +356,7 @@ class DefaultControllerTest extends BaseTest
 
     public function testPathActionForbidden()
     {
-        $this->expectException(ReadFileException::class);
+        $this->expectException(FileNotFoundException::class);
         $client = static::createClient();
         $client->request('GET', '/path/w_200,h_200,c_1/Rovinj-Croatia-nonExist.jpg');
     }
