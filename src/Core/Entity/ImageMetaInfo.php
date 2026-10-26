@@ -142,7 +142,7 @@ class ImageMetaInfo
      */
     protected function imageImIdentify(): array
     {
-        $commandStr = Processor::IM_IDENTITY_COMMAND . ' ' . $this->path() . ' 2>&1';
+        $commandStr = Processor::IM_IDENTITY_COMMAND . ' ' . escapeshellarg($this->path()) . ' 2>&1';
         exec($commandStr, $output, $code);
         if (count($output) === 0) {
             $outputError = $code;

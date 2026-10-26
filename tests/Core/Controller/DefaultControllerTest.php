@@ -424,6 +424,18 @@ class DefaultControllerTest extends BaseTest
         $client->request('GET', '/upload/w_200,h_200,tm_00:00:20/' . BaseTest::MOVIE_TEST_FILE);
     }
 
+    public function testUploadMovieShellInjectionInTimeIsRejected()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $client = static::createClient();
+        $marker = 'tm-injection-' . uniqid();
+        try {
+            $client->request('GET', '/upload/tm_1%3Btouch%20' . $marker . '%3B,rf_1/' . BaseTest::MOVIE_TEST_FILE);
+        } finally {
+            $this->assertFileDoesNotExist(getcwd() . '/' . $marker);
+        }
+    }
+
     /**
      * Creates the application.
      *

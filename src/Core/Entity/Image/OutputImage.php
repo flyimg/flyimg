@@ -3,6 +3,7 @@
 namespace Core\Entity\Image;
 
 use Core\Exception\InvalidArgumentException;
+use Core\Processor\VideoProcessor;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -70,9 +71,8 @@ class OutputImage
         }
 
         if ($this->isInputMovie()) {
-            $time = $this->inputImage->optionsBag()->get('time');
-            $tmpTime = str_replace(['.', ':'], '', $time);
-            $this->outputImageName .= '-' . $tmpTime;
+            $time = VideoProcessor::validateTime($this->inputImage->optionsBag()->get('time'));
+            $this->outputImageName .= '-' . VideoProcessor::timeFileSuffix($time);
         }
         $this->outputImageName .= '.' . $this->outputImageExtension;
     }
