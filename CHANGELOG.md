@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.11](https://github.com/flyimg/flyimg/compare/1.12.10...1.12.11) (2026-10-28)
+
+
+### Bug Fixes
+
+* **security:** validate video time option and shell-quote file paths ([f9ee323](https://github.com/flyimg/flyimg/commit/f9ee323e3b458d51b88e46676f9ff3367cbb0c05))
+
 ## [1.12.10](https://github.com/flyimg/flyimg/compare/1.12.9...1.12.10) (2026-10-22)
 
 
