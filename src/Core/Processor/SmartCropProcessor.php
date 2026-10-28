@@ -22,7 +22,7 @@ class SmartCropProcessor extends Processor
     {
 
         $smartCropCmd = new Command(self::SMARTCROP_COMMAND);
-        $smartCropCmd->addArgument($outputImage->getOutputTmpPath());
+        $smartCropCmd->addArgument(escapeshellarg($outputImage->getOutputTmpPath()));
         $this->logger->info('sourceImageUrl: ' . $outputImage->getInputImage()->sourceImageUrl());
         $this->logger->info('SmartCropCommand: ' . $smartCropCmd);
         $output = $this->execute($smartCropCmd);
@@ -30,9 +30,9 @@ class SmartCropProcessor extends Processor
         if (!empty($output)) {
             $geometry = $output[0];
             $cropCmd = new Command(self::IM_CONVERT_COMMAND);
-            $cropCmd->addArgument($outputImage->getOutputTmpPath());
+            $cropCmd->addArgument(escapeshellarg($outputImage->getOutputTmpPath()));
             $cropCmd->addArgument("-crop", $geometry);
-            $cropCmd->addArgument($outputImage->getOutputTmpPath());
+            $cropCmd->addArgument(escapeshellarg($outputImage->getOutputTmpPath()));
             $this->logger->info('ImageMagickCropCommand: ' . $cropCmd);
             $this->execute($cropCmd);
         }

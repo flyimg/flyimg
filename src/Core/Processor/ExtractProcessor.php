@@ -33,9 +33,9 @@ class ExtractProcessor extends Processor
         $geometryW = $bottomRightX - $topLeftX;
         $geometryH = $bottomRightY - $topLeftY;
         $extractCmd = new Command(self::IM_CONVERT_COMMAND);
-        $extractCmd->addArgument($inputImage->sourceImagePath());
+        $extractCmd->addArgument(escapeshellarg($inputImage->sourceImagePath()));
         $extractCmd->addArgument(" -crop", "{$geometryW}x{$geometryH}+{$topLeftX}+{$topLeftY}");
-        $extractCmd->addArgument($inputImage->sourceImagePath());
+        $extractCmd->addArgument(escapeshellarg($inputImage->sourceImagePath()));
         $this->logger->info('sourceImageUrl: ' . $inputImage->sourceImageUrl());
         $this->logger->info('ExtractCommand: ' . $extractCmd);
         $this->execute($extractCmd);

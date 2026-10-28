@@ -78,7 +78,7 @@ class ImageProcessor extends Processor
             $command->addArgument('-density', $this->options->getOption('density'));
         }
 
-        $command->addArgument($this->getSourceImagePath($outputImage) . $pdfPageNo);
+        $command->addArgument(escapeshellarg($this->getSourceImagePath($outputImage) . $pdfPageNo));
 
         if (!empty($this->options->getOption('gravity'))) {
             $command->addArgument('-gravity', $this->options->getOption('gravity'));
@@ -195,7 +195,7 @@ class ImageProcessor extends Processor
 
             // set the frame if the output image is not gif (to get ony one  frame)
             if ($outputImage->getOutputImageExtension() !== OutputImage::EXT_GIF) {
-                $tmpFileName .= '[' . escapeshellarg($frame) . ']';
+                $tmpFileName .= '[' . $frame . ']';
             }
         }
 
