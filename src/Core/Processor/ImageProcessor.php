@@ -273,7 +273,8 @@ class ImageProcessor extends Processor
         string $outputPath
     ): string {
         $webpMethod = self::normalizeWebpMethod($method);
-        $command = "png:- | " . escapeshellarg(self::CWEBP_COMMAND)
+        // The PNG is only a pipe to cwebp, which decodes it right away: skip zlib compression.
+        $command = "-define png:compression-level=0 png:- | " . escapeshellarg(self::CWEBP_COMMAND)
             . " -q " . escapeshellarg((string) $quality)
             . " -m " . escapeshellarg((string) $webpMethod);
 
