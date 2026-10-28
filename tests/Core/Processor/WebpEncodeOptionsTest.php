@@ -50,7 +50,7 @@ class WebpEncodeOptionsTest extends TestCase
     {
         $command = ImageProcessor::buildWebpEncoderCommand(80, '0', null, '', '/tmp/out.webp');
 
-        $this->assertStringStartsWith('png:- | ', $command);
+        $this->assertStringStartsWith('-define png:compression-level=0 png:- | ', $command);
         $this->assertStringContainsString("'/usr/bin/cwebp'", $command);
         $this->assertStringContainsString("-q '80'", $command);
         $this->assertStringContainsString("-m '4'", $command);
