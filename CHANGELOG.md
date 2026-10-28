@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.12](https://github.com/flyimg/flyimg/compare/1.12.11...1.12.12) (2026-10-28)
+
+
+### Bug Fixes
+
+* skip zlib when piping PNG into cwebp ([b48245b](https://github.com/flyimg/flyimg/commit/b48245b6c91f0db01bfbe71456ae3490bbee1694))
+
 ## [1.12.11](https://github.com/flyimg/flyimg/compare/1.12.10...1.12.11) (2026-10-28)
 
 
