@@ -34,7 +34,7 @@
         "symfony/process": "^7.0",
         "squizlabs/php_codesniffer": "3.*",
         "escapestudios/symfony2-coding-standard": "~3.0",
-        "symfony/browser-kit": "^7.0"
+        "symfony/browser-kit": "^8.1"
     },
     "autoload": {
         "psr-4": {
