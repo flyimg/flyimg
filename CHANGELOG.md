@@ -1,5 +1,12 @@
 # Flyimg Changelog
 
+## [1.12.13](https://github.com/flyimg/flyimg/compare/1.12.12...1.12.13) (2026-11-03)
+
+
+### Bug Fixes
+
+* avoid rf_1 races on shared source and output files ([eada7e8](https://github.com/flyimg/flyimg/commit/eada7e864e56f743edc8d90aba9b32311034c2ba))
+
 ## [1.12.12](https://github.com/flyimg/flyimg/compare/1.12.11...1.12.12) (2026-10-28)
 
 
