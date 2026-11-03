@@ -44,4 +44,67 @@ class InputImageTest extends BaseTest
 
         new InputImage($optionsBag, 'not-a-url');
     }
+
+    /**
+     * Atomic write replaces the shared original path completely and leaves no .part file.
+     *
+     * @return void
+     */
+    public function testWriteSourceImageAtomicallyReplacesSharedPath()
+    {
+        $optionsBag = new OptionsBag($this->imageHandler->appParameters(), 'o_jpg');
+        $inputImage = new InputImage($optionsBag, parent::JPG_TEST_IMAGE);
+        $sourcePath = $inputImage->sourceImagePath();
+
+        $this->assertFileExists($sourcePath);
+        $this->assertSame(
+            file_get_contents(parent::JPG_TEST_IMAGE),
+            file_get_contents($sourcePath)
+        );
+
+        $replacement = file_get_contents(parent::PNG_TEST_IMAGE);
+        $method = new \ReflectionMethod(
+            InputImage::class,
+            'writeSourceImageAtomically'
+        );
+        $method->invoke($inputImage, $replacement);
+
+        $this->assertFileExists($sourcePath);
+        $this->assertSame($replacement, file_get_contents($sourcePath));
+        $this->assertSame([], glob($sourcePath . '.*.part') ?: []);
+
+        @unlink($sourcePath);
+        @unlink($sourcePath . '.lock');
+    }
+
+    /**
+     * Refresh re-copies the local source via the atomic write path.
+     *
+     * @return void
+     */
+    public function testRefreshRewritesSourceViaAtomicWrite()
+    {
+        $optionsBag = new OptionsBag($this->imageHandler->appParameters(), 'o_jpg');
+        $first = new InputImage($optionsBag, parent::PNG_TEST_IMAGE);
+        $sourcePath = $first->sourceImagePath();
+        $this->assertFileExists($sourcePath);
+
+        file_put_contents($sourcePath, 'stale-partial-content');
+
+        $refreshBag = new OptionsBag(
+            $this->imageHandler->appParameters(),
+            'o_jpg,rf_1'
+        );
+        $refreshed = new InputImage($refreshBag, parent::PNG_TEST_IMAGE);
+
+        $this->assertSame($sourcePath, $refreshed->sourceImagePath());
+        $this->assertSame(
+            file_get_contents(parent::PNG_TEST_IMAGE),
+            file_get_contents($sourcePath)
+        );
+        $this->assertSame([], glob($sourcePath . '.*.part') ?: []);
+
+        @unlink($sourcePath);
+        @unlink($sourcePath . '.lock');
+    }
 }
