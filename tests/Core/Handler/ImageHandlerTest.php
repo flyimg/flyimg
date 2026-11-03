@@ -3,7 +3,9 @@
 namespace Tests\Core\Service;
 
 use Core\Entity\Image\InputImage;
+use Core\Handler\ImageHandler;
 use Core\Processor\Processor;
+use League\Flysystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Tests\Core\BaseTest;
 
@@ -12,6 +14,60 @@ use Tests\Core\BaseTest;
  */
 class ImageHandlerTest extends BaseTest
 {
+    /**
+     * rf_1 must regenerate by overwriting storage, never delete-first.
+     *
+     * @return void
+     */
+    public function testRefreshOverwritesWithoutDeletingFirst()
+    {
+        $options = 'w_50,h_50,o_jpg';
+        $first = $this->imageHandler->processImage($options, parent::PNG_TEST_IMAGE);
+        $this->generatedImage[] = $first;
+        $outputName = $first->getOutputImageName();
+        $storage = $this->app['flysystems']['storage_handler'];
+        $this->assertTrue($storage->has($outputName));
+
+        $deleteCalled = false;
+        $spy = $this->getMockBuilder(Filesystem::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['has', 'delete', 'write', 'read'])
+            ->getMock();
+        $spy->method('has')->willReturnCallback(
+            static function (string $path) use ($storage) {
+                return $storage->has($path);
+            }
+        );
+        $spy->method('delete')->willReturnCallback(
+            static function (string $path) use ($storage, &$deleteCalled): void {
+                $deleteCalled = true;
+                $storage->delete($path);
+            }
+        );
+        $spy->method('write')->willReturnCallback(
+            static function (string $path, string $contents) use ($storage): void {
+                $storage->write($path, $contents);
+            }
+        );
+        $spy->method('read')->willReturnCallback(
+            static function (string $path) use ($storage) {
+                return $storage->read($path);
+            }
+        );
+
+        $handler = new ImageHandler($spy, $this->app['params']);
+        $refreshed = $handler->processImage($options . ',rf_1', parent::PNG_TEST_IMAGE);
+        $this->generatedImage[] = $refreshed;
+
+        $this->assertFalse(
+            $deleteCalled,
+            'refresh must not delete the stored output before regenerating'
+        );
+        $this->assertTrue($storage->has($outputName));
+        $this->assertSame($outputName, $refreshed->getOutputImageName());
+        $this->assertNotEmpty($refreshed->getOutputImageContent());
+    }
+
     /**
      */
     public function testProcessPNG()

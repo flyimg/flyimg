@@ -2,7 +2,7 @@
 
 namespace Tests\Core\StorageProvider;
 
-use League\Flysystem\UnableToCheckFileExistence;
+use League\Flysystem\UnableToWriteFile;
 use Core\Exception\MissingParamsException;
 use Core\Handler\ImageHandler;
 use Core\StorageProvider\S3StorageProvider;
@@ -14,11 +14,11 @@ use Tests\Core\BaseTest;
 class S3StorageProviderTest extends BaseTest
 {
     /**
-     *
+     * rf_1 regenerates via overwrite (write), so unreachable S3 fails on PutObject.
      */
     public function testUploadActionWithS3StorageS3Exception()
     {
-        $this->expectException(UnableToCheckFileExistence::class);
+        $this->expectException(UnableToWriteFile::class);
 
         unset($this->app['flysystems']);
         unset($this->app['image.handler']);

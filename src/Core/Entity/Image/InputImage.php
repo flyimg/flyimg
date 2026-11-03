@@ -193,156 +193,198 @@ class InputImage
             return;
         }
 
-        // Handle data URI
-        if (stripos($originalSource, 'data:') === 0) {
-            $commaPos = strpos($originalSource, ',');
-            if ($commaPos === false) {
-                throw new InvalidArgumentException('Invalid data URI');
-            }
-            $meta = substr($originalSource, 0, $commaPos);
-            $dataPart = substr($originalSource, $commaPos + 1);
-            $isBase64 = stripos($meta, ';base64') !== false;
-            $binary = $isBase64 ? base64_decode($dataPart) : urldecode($dataPart);
-            if ($binary === false) {
-                throw new InvalidArgumentException('Invalid base64 data');
-            }
-            file_put_contents($this->sourceImagePath, $binary);
-            return;
+        $lockHandle = fopen($this->sourceImagePath . '.lock', 'c');
+        if ($lockHandle === false) {
+            throw new AppException('Unable to create lock file for source image');
         }
 
-        // Handle s3://bucket/key
-        if (stripos($originalSource, 's3://') === 0) {
-            $withoutScheme = substr($originalSource, 5);
-            $firstSlash = strpos($withoutScheme, '/');
-            if ($firstSlash === false) {
-                throw new InvalidArgumentException('Invalid S3 URI, expected s3://bucket/key');
+        try {
+            if (!flock($lockHandle, LOCK_EX)) {
+                throw new AppException('Unable to lock source image for writing');
             }
-            $bucket = substr($withoutScheme, 0, $firstSlash);
-            $key = substr($withoutScheme, $firstSlash + 1);
 
-            // Build HTTP URL using configured endpoint pattern if present
-            $params = $this->optionsBag->appParameters()->parameterByKey('aws_s3');
-            if (!is_array($params) || empty($params)) {
-                throw new AppException('S3 not configured');
+            // Another request may have finished downloading while we waited.
+            if (file_exists($this->sourceImagePath) && !$refresh) {
+                return;
             }
-            $endpoint = (
-                isset($params['endpoint']) && !empty($params['endpoint'])
-            )
-                ? sprintf($params['endpoint'], $bucket, $params['region'])
-                : sprintf(
-                    'https://%s.s3.%s.amazonaws.com/',
-                    $bucket,
-                    $params['region']
-                );
-            $signedUrl = $endpoint . $key;
 
-            // Fetch via curl (public or signed by custom endpoint). If private, rely on Authorization forwarding.
-            $headers = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
-            if (is_string($headers)) {
-                $headers = [$headers];
+            // Handle data URI
+            if (stripos($originalSource, 'data:') === 0) {
+                $commaPos = strpos($originalSource, ',');
+                if ($commaPos === false) {
+                    throw new InvalidArgumentException('Invalid data URI');
+                }
+                $meta = substr($originalSource, 0, $commaPos);
+                $dataPart = substr($originalSource, $commaPos + 1);
+                $isBase64 = stripos($meta, ';base64') !== false;
+                $binary = $isBase64 ? base64_decode($dataPart) : urldecode($dataPart);
+                if ($binary === false) {
+                    throw new InvalidArgumentException('Invalid base64 data');
+                }
+                $this->writeSourceImageAtomically($binary);
+                return;
             }
-            $forwardRequestHeaders = (array)$this->optionsBag
-                ->appParameters()
-                ->parameterByKey('forward_request_headers', []);
-            if (!empty($forwardRequestHeaders)) {
-                $requestHeaders = Request::createFromGlobals()->headers;
-                foreach ($forwardRequestHeaders as $name) {
-                    if ($requestHeaders->has($name)) {
-                        $value = $requestHeaders->get($name);
-                        $headers[] = "$name: $value";
-                        if ('Authorization' === $name) {
-                            $this->sourceImagePath .= md5($value);
+
+            // Handle s3://bucket/key
+            if (stripos($originalSource, 's3://') === 0) {
+                $withoutScheme = substr($originalSource, 5);
+                $firstSlash = strpos($withoutScheme, '/');
+                if ($firstSlash === false) {
+                    throw new InvalidArgumentException('Invalid S3 URI, expected s3://bucket/key');
+                }
+                $bucket = substr($withoutScheme, 0, $firstSlash);
+                $key = substr($withoutScheme, $firstSlash + 1);
+
+                // Build HTTP URL using configured endpoint pattern if present
+                $params = $this->optionsBag->appParameters()->parameterByKey('aws_s3');
+                if (!is_array($params) || empty($params)) {
+                    throw new AppException('S3 not configured');
+                }
+                $endpoint = (
+                    isset($params['endpoint']) && !empty($params['endpoint'])
+                )
+                    ? sprintf($params['endpoint'], $bucket, $params['region'])
+                    : sprintf(
+                        'https://%s.s3.%s.amazonaws.com/',
+                        $bucket,
+                        $params['region']
+                    );
+                $signedUrl = $endpoint . $key;
+
+                // Fetch via curl (public or signed by custom endpoint). If private, rely on Authorization forwarding.
+                $headers = $this->optionsBag->appParameters()->parameterByKey('header_extra_options');
+                if (is_string($headers)) {
+                    $headers = [$headers];
+                }
+                $forwardRequestHeaders = (array)$this->optionsBag
+                    ->appParameters()
+                    ->parameterByKey('forward_request_headers', []);
+                if (!empty($forwardRequestHeaders)) {
+                    $requestHeaders = Request::createFromGlobals()->headers;
+                    foreach ($forwardRequestHeaders as $name) {
+                        if ($requestHeaders->has($name)) {
+                            $value = $requestHeaders->get($name);
+                            $headers[] = "$name: $value";
+                            if ('Authorization' === $name) {
+                                $this->sourceImagePath .= md5($value);
+                            }
                         }
                     }
                 }
-            }
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $signedUrl);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt(
-                $ch,
-                CURLOPT_TIMEOUT,
-                $this->optionsBag->appParameters()->parameterByKey('source_image_request_timeout')
-            );
-            $imageData = curl_exec($ch);
-            if (curl_errno($ch)) {
-                throw new ReadFileException('Curl error: ' . curl_error($ch));
-            }
-            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            curl_close($ch);
-            if ($httpCode == 200 && $imageData !== false) {
-                file_put_contents($this->sourceImagePath, $imageData);
-                return;
-            }
-            switch ($httpCode) {
-                case 400:
-                    throw new InvalidArgumentException();
-                case 401:
-                    throw new UnauthorizedException();
-                case 403:
-                    throw new AccessDeniedException();
-                case 404:
-                    throw new FileNotFoundException();
-                case 503:
-                    throw new ServiceUnavailableException();
-                default:
-                    throw new AppException();
-            }
-        }
-
-        if (filter_var($this->sourceImageUrl, FILTER_VALIDATE_URL)) {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $this->sourceImageUrl);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);  // Allow redirects
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);  // Add custom headers
-            curl_setopt(
-                $ch,
-                CURLOPT_TIMEOUT,
-                $this->optionsBag->appParameters()
-                     ->parameterByKey('source_image_request_timeout')
-            );
-
-            $imageData = curl_exec($ch);
-
-            if (curl_errno($ch)) {
-                throw new ReadFileException('Curl error: ' . curl_error($ch));
-            } else {
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $signedUrl);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt(
+                    $ch,
+                    CURLOPT_TIMEOUT,
+                    $this->optionsBag->appParameters()->parameterByKey('source_image_request_timeout')
+                );
+                $imageData = curl_exec($ch);
+                if (curl_errno($ch)) {
+                    throw new ReadFileException('Curl error: ' . curl_error($ch));
+                }
                 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                if ($httpCode == 200) {
-                    file_put_contents($this->sourceImagePath, $imageData);
-                } else {
-                    switch ($httpCode) {
-                        case 400:
-                            throw new InvalidArgumentException();
-                        case 401:
-                            throw new UnauthorizedException();
-                        case 403:
-                            throw new AccessDeniedException();
-                        case 404:
-                            throw new FileNotFoundException();
-                        case 503:
-                            throw new ServiceUnavailableException();
-                        default:
-                            throw new AppException();
-                    }
+                curl_close($ch);
+                if ($httpCode == 200 && $imageData !== false) {
+                    $this->writeSourceImageAtomically($imageData);
+                    return;
+                }
+                switch ($httpCode) {
+                    case 400:
+                        throw new InvalidArgumentException();
+                    case 401:
+                        throw new UnauthorizedException();
+                    case 403:
+                        throw new AccessDeniedException();
+                    case 404:
+                        throw new FileNotFoundException();
+                    case 503:
+                        throw new ServiceUnavailableException();
+                    default:
+                        throw new AppException();
                 }
             }
-            curl_close($ch);
-        } else {
-            // Handle local file. A missing or unreadable source is a client
-            // error (400 / 404), not a server-side read failure.
-            if ($this->sourceImageUrl === '') {
-                throw new InvalidArgumentException('Source image is missing');
+
+            if (filter_var($this->sourceImageUrl, FILTER_VALIDATE_URL)) {
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $this->sourceImageUrl);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);  // Allow redirects
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);  // Add custom headers
+                curl_setopt(
+                    $ch,
+                    CURLOPT_TIMEOUT,
+                    $this->optionsBag->appParameters()
+                         ->parameterByKey('source_image_request_timeout')
+                );
+
+                $imageData = curl_exec($ch);
+
+                if (curl_errno($ch)) {
+                    throw new ReadFileException('Curl error: ' . curl_error($ch));
+                } else {
+                    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                    if ($httpCode == 200) {
+                        $this->writeSourceImageAtomically($imageData);
+                    } else {
+                        switch ($httpCode) {
+                            case 400:
+                                throw new InvalidArgumentException();
+                            case 401:
+                                throw new UnauthorizedException();
+                            case 403:
+                                throw new AccessDeniedException();
+                            case 404:
+                                throw new FileNotFoundException();
+                            case 503:
+                                throw new ServiceUnavailableException();
+                            default:
+                                throw new AppException();
+                        }
+                    }
+                }
+                curl_close($ch);
+            } else {
+                // Handle local file. A missing or unreadable source is a client
+                // error (400 / 404), not a server-side read failure.
+                if ($this->sourceImageUrl === '') {
+                    throw new InvalidArgumentException('Source image is missing');
+                }
+                if (!file_exists($this->sourceImageUrl)) {
+                    throw new FileNotFoundException('File ' . $this->sourceImageUrl . ' does not exist.');
+                }
+                $imageData = file_get_contents($this->sourceImageUrl);
+                $this->writeSourceImageAtomically($imageData);
             }
-            if (!file_exists($this->sourceImageUrl)) {
-                throw new FileNotFoundException('File ' . $this->sourceImageUrl . ' does not exist.');
-            }
-            $imageData = file_get_contents($this->sourceImageUrl);
-            file_put_contents($this->sourceImagePath, $imageData);
+        } finally {
+            flock($lockHandle, LOCK_UN);
+            fclose($lockHandle);
+        }
+    }
+
+    /**
+     * Write source image content via a unique .part file then rename onto the
+     * shared path so concurrent readers never see a truncated file.
+     *
+     * @param string $content Image binary content.
+     *
+     * @return void
+     *
+     * @throws AppException
+     */
+    protected function writeSourceImageAtomically(string $content): void
+    {
+        $partPath = $this->sourceImagePath . '.' . uniqid('', true) . '.part';
+        if (file_put_contents($partPath, $content) === false) {
+            throw new AppException('Unable to write temporary source image');
+        }
+
+        if (!rename($partPath, $this->sourceImagePath)) {
+            @unlink($partPath);
+            throw new AppException('Unable to replace source image');
         }
     }
 

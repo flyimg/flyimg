@@ -112,11 +112,9 @@ class ImageHandler
         $outputImage = new OutputImage($inputImage);
 
         try {
-            if ($this->filesystem->has($outputImage->getOutputImageName()) && $optionsBag->get('refresh')) {
-                $this->filesystem->delete($outputImage->getOutputImageName());
-            }
-            // Check if the image is already generated
-            if (!$this->filesystem->has($outputImage->getOutputImageName())) {
+            // Refresh overwrites in place (processNewImage -> filesystem->write)
+            // so concurrent readers keep seeing the previous file until replace.
+            if ($optionsBag->get('refresh') || !$this->filesystem->has($outputImage->getOutputImageName())) {
                 // Check if rate limiting is enabled
                 if ($this->appParameters->parameterByKey('rate_limit_enabled')) {
                     $headers = $this->rateLimitHandler->checkRateLimit($request);
